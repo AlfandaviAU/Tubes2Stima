@@ -1,0 +1,13 @@
+C:\Users\alfan\source\repos\TubesStima2\TubesStima2\bin\Debug\netcoreapp3.1\TubesStima2.exe
+C:\Users\alfan\source\repos\TubesStima2\TubesStima2\bin\Debug\netcoreapp3.1\TubesStima2.deps.json
+C:\Users\alfan\source\repos\TubesStima2\TubesStima2\bin\Debug\netcoreapp3.1\TubesStima2.runtimeconfig.json
+C:\Users\alfan\source\repos\TubesStima2\TubesStima2\bin\Debug\netcoreapp3.1\TubesStima2.runtimeconfig.dev.json
+C:\Users\alfan\source\repos\TubesStima2\TubesStima2\bin\Debug\netcoreapp3.1\TubesStima2.dll
+C:\Users\alfan\source\repos\TubesStima2\TubesStima2\bin\Debug\netcoreapp3.1\TubesStima2.pdb
+C:\Users\alfan\source\repos\TubesStima2\TubesStima2\obj\Debug\netcoreapp3.1\TubesStima2.csprojAssemblyReference.cache
+C:\Users\alfan\source\repos\TubesStima2\TubesStima2\obj\Debug\netcoreapp3.1\TubesStima2.AssemblyInfoInputs.cache
+C:\Users\alfan\source\repos\TubesStima2\TubesStima2\obj\Debug\netcoreapp3.1\TubesStima2.AssemblyInfo.cs
+C:\Users\alfan\source\repos\TubesStima2\TubesStima2\obj\Debug\netcoreapp3.1\TubesStima2.csproj.CoreCompileInputs.cache
+C:\Users\alfan\source\repos\TubesStima2\TubesStima2\obj\Debug\netcoreapp3.1\TubesStima2.dll
+C:\Users\alfan\source\repos\TubesStima2\TubesStima2\obj\Debug\netcoreapp3.1\TubesStima2.pdb
+C:\Users\alfan\source\repos\TubesStima2\TubesStima2\obj\Debug\netcoreapp3.1\TubesStima2.genruntimeconfig.cache
