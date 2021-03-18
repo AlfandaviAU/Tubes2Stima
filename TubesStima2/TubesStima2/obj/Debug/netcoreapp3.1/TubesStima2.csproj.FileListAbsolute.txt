@@ -11,3 +11,16 @@ C:\Users\alfan\source\repos\TubesStima2\TubesStima2\obj\Debug\netcoreapp3.1\Tube
 C:\Users\alfan\source\repos\TubesStima2\TubesStima2\obj\Debug\netcoreapp3.1\TubesStima2.dll
 C:\Users\alfan\source\repos\TubesStima2\TubesStima2\obj\Debug\netcoreapp3.1\TubesStima2.pdb
 C:\Users\alfan\source\repos\TubesStima2\TubesStima2\obj\Debug\netcoreapp3.1\TubesStima2.genruntimeconfig.cache
+E:\HMIF\Semester4\Strategi Algoritma\tubes 2\TubesStima2\TubesStima2\obj\Debug\netcoreapp3.1\TubesStima2.csprojAssemblyReference.cache
+E:\HMIF\Semester4\Strategi Algoritma\tubes 2\TubesStima2\TubesStima2\obj\Debug\netcoreapp3.1\TubesStima2.AssemblyInfoInputs.cache
+E:\HMIF\Semester4\Strategi Algoritma\tubes 2\TubesStima2\TubesStima2\obj\Debug\netcoreapp3.1\TubesStima2.AssemblyInfo.cs
+E:\HMIF\Semester4\Strategi Algoritma\tubes 2\TubesStima2\TubesStima2\obj\Debug\netcoreapp3.1\TubesStima2.csproj.CoreCompileInputs.cache
+E:\HMIF\Semester4\Strategi Algoritma\tubes 2\TubesStima2\TubesStima2\obj\Debug\netcoreapp3.1\TubesStima2.dll
+E:\HMIF\Semester4\Strategi Algoritma\tubes 2\TubesStima2\TubesStima2\obj\Debug\netcoreapp3.1\TubesStima2.pdb
+E:\HMIF\Semester4\Strategi Algoritma\tubes 2\TubesStima2\TubesStima2\bin\Debug\netcoreapp3.1\TubesStima2.exe
+E:\HMIF\Semester4\Strategi Algoritma\tubes 2\TubesStima2\TubesStima2\bin\Debug\netcoreapp3.1\TubesStima2.deps.json
+E:\HMIF\Semester4\Strategi Algoritma\tubes 2\TubesStima2\TubesStima2\bin\Debug\netcoreapp3.1\TubesStima2.runtimeconfig.json
+E:\HMIF\Semester4\Strategi Algoritma\tubes 2\TubesStima2\TubesStima2\bin\Debug\netcoreapp3.1\TubesStima2.runtimeconfig.dev.json
+E:\HMIF\Semester4\Strategi Algoritma\tubes 2\TubesStima2\TubesStima2\bin\Debug\netcoreapp3.1\TubesStima2.dll
+E:\HMIF\Semester4\Strategi Algoritma\tubes 2\TubesStima2\TubesStima2\bin\Debug\netcoreapp3.1\TubesStima2.pdb
+E:\HMIF\Semester4\Strategi Algoritma\tubes 2\TubesStima2\TubesStima2\obj\Debug\netcoreapp3.1\TubesStima2.genruntimeconfig.cache

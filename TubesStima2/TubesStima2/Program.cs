@@ -3,6 +3,8 @@ using System.Linq;
 using System.Text;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.IO;
+
 
 namespace TubesStima2
 {
@@ -14,7 +16,7 @@ namespace TubesStima2
         {
             titik = a;
             simpul = new List<Int32>[a];
-            for (int i=0; i < a; i++)
+            for (int i = 0; i < a; i++)
             {
                 simpul[i] = new List<int>();
             }
@@ -33,10 +35,11 @@ namespace TubesStima2
             while (stack.Count != 0)
             {
                 a = stack.Pop();
-                Console.Write(a+",");
-                foreach(int i in simpul[a])
+                Console.Write(a + ",");
+                foreach (int i in simpul[a])
                 {
-                    if (!dikunjungi[i]){
+                    if (!dikunjungi[i])
+                    {
                         dikunjungi[i] = true;
                         stack.Push(i);
                     }
@@ -46,13 +49,12 @@ namespace TubesStima2
         public int[] After(int a)
         {
             int[] after = new int[titik];
-            foreach(int i in simpul[a])
+            foreach (int i in simpul[a])
             {
                 after[i] = i;
             }
             return after;
         }
-
     }
     class Program
     {
@@ -238,7 +240,7 @@ namespace TubesStima2
             int count1 = 0;
             int count2 = 0;
             int count = 0;
-            foreach(int i in a.After(a1))
+            foreach (int i in a.After(a1))
             {
                 temp1[count1] = i;
                 count1++;
@@ -274,10 +276,10 @@ namespace TubesStima2
             {
                 Console.WriteLine("0 mutual friend");
             }
-            
+
             for (int i = 0; i < count1; i++)
             {
-                for(int j = 0; j < count2; j++)
+                for (int j = 0; j < count2; j++)
                 {
                     if (temp1[i] == temp2[j] && (temp1[i] != 0))
                     {
@@ -288,46 +290,45 @@ namespace TubesStima2
         }
         static void Main(string[] args)
         {
-            int count_graph = 13;
+            try
+            {
+                string filepath = @"E:\HMIF\Semester4\Strategi Algoritma\tubes 2\TubesStima2\TubesStima2\test.txt"; // nanti kau ubah pathnya
+                List<string> lines = new List<string>();
+                lines = File.ReadAllLines(filepath).ToList();
+                
+                int count_graph = Int32.Parse(lines[0]);
 
-            Graph g = new Graph(count_graph);
-            Graph g2 = new Graph(count_graph);
-            g.tambahSimpul(1, 2);
-            g.tambahSimpul(1, 3);
-            g.tambahSimpul(1, 4);
-            g.tambahSimpul(2, 3);
-            g.tambahSimpul(2, 5);
-            g.tambahSimpul(2, 6);
-            g.tambahSimpul(3, 6);
-            g.tambahSimpul(3, 7);
-            g.tambahSimpul(4, 7);
-            g.tambahSimpul(4, 6);
-            g.tambahSimpul(5, 8);
-            g.tambahSimpul(5, 6);
-            g.tambahSimpul(6, 8);
+                Graph g = new Graph(count_graph);
+                Graph g2 = new Graph(count_graph);
 
-            g2.tambahSimpul(2, 1);
-            g2.tambahSimpul(3, 1);
-            g2.tambahSimpul(4, 1);
-            g2.tambahSimpul(3, 2);
-            g2.tambahSimpul(5, 2);
-            g2.tambahSimpul(6, 2);
-            g2.tambahSimpul(6, 3);
-            g2.tambahSimpul(7, 3);
-            g2.tambahSimpul(7, 4);
-            g2.tambahSimpul(6, 4);
-            g2.tambahSimpul(8, 5);
-            g2.tambahSimpul(6, 5);
-            g2.tambahSimpul(8, 6);
+                for (int z = 1; z <= count_graph; z++)
+                {
+                    char[] c1 = { lines[z][0] };
+                    string s1 = new string (c1);
+                    int temp1 = ConverterKeInt(s1);
 
-            Console.Write("Daftar rekomendasi teman untuk akun : ");
-            string source = Console.ReadLine();
-            int src = ConverterKeInt(source);
+                    char[] c2 = { lines[z][2] };
+                    string s2 = new string(c2);
+                    int temp2 = ConverterKeInt(s2);
+                    g.tambahSimpul(temp1, temp2);
+                    g2.tambahSimpul(temp2, temp1);
 
-            Console.Write("Nama akun : ");
-            string destination = Console.ReadLine();
-            int dest = ConverterKeInt(destination);
-            Soal1(g, g2, src, dest, count_graph);
+                }
+
+                Console.Write("Daftar rekomendasi teman untuk akun : ");
+                string source = Console.ReadLine();
+                int src = ConverterKeInt(source);
+
+                Console.Write("Nama akun : ");
+                string destination = Console.ReadLine();
+                int dest = ConverterKeInt(destination);
+                Soal1(g, g2, src, dest, count_graph);
+            }
+
+            catch (FileNotFoundException e)
+            {
+                Console.WriteLine("Not found");
+            }
         }
     }
 }

@@ -1,8 +1,17 @@
 {
   "ExpandedNodes": [
     "",
-    "\\tubesancok"
+    "\\TubesStima2",
+    "\\TubesStima2\\TubesStima2",
+    "\\TubesStima2\\TubesStima2\\bin",
+    "\\TubesStima2\\TubesStima2\\bin\\Debug",
+    "\\TubesStima2\\TubesStima2\\bin\\Debug\\netcoreapp3.1",
+    "\\TubesStima2\\TubesStima2\\bin\\Release",
+    "\\TubesStima2\\TubesStima2\\bin\\Release\\netcoreapp3.1",
+    "\\TubesStima2\\TubesStima2\\obj",
+    "\\TubesStima2\\TubesStima2\\obj\\Debug",
+    "\\TubesStima2\\TubesStima2\\obj\\Debug\\netcoreapp3.1"
   ],
-  "SelectedNode": "\\tubesancok\\Program.cs",
+  "SelectedNode": "\\TubesStima2\\TubesStima2\\TubesStima2.csproj",
   "PreviewInSolutionExplorer": false
 }
