@@ -24,6 +24,7 @@ namespace TubesStima2
         public void tambahSimpul(int a, int b)
         {
             simpul[a].Add(b);
+            simpul[a].Sort();
         }
         public void DFS(int a)
         {
@@ -42,6 +43,23 @@ namespace TubesStima2
                     {
                         dikunjungi[i] = true;
                         stack.Push(i);
+                    }
+                }
+            }
+        }
+        public void BFS(int a) {
+            bool[] dikunjungi = new bool[titik];
+            Queue<Int32> queue = new Queue<int>();
+            dikunjungi[a] = true;
+            queue.Enqueue(a);
+
+            while(queue.Count != 0) {
+                a = queue.Dequeue();
+                Console.Write(a+",");
+                foreach(int i in simpul[a]) {
+                    if(!dikunjungi[i]) {
+                        dikunjungi[i] = true;
+                        queue.Enqueue(i);
                     }
                 }
             }
@@ -235,6 +253,7 @@ namespace TubesStima2
 
         static void Soal1(Graph a, Graph b, int a1, int b1, int titik)
         {
+            int teman = 0;
             int[] temp1 = new int[titik];
             int[] temp2 = new int[titik];
             int count1 = 0;
@@ -255,13 +274,19 @@ namespace TubesStima2
             {
                 for (int j = 0; j < count2; j++)
                 {
-                    if (temp1[i] == temp2[j] && (temp1[i] != 0))
+                    if(a1 == temp2[j] || b1 == temp1[i]) {
+                        teman = 1;
+                    }
+                    else if (temp1[i] == temp2[j] && (temp1[i] != 0))
                     {
                         count += 1;
                     }
                 }
             }
-            if (count > 0)
+            if(teman == 1) {
+                Console.WriteLine("Already friends");
+            }
+            else if (count > 0)
             {
                 if (count != 1)
                 {
@@ -274,7 +299,7 @@ namespace TubesStima2
             }
             else
             {
-                Console.WriteLine("0 mutual friend");
+                Console.WriteLine("No mutual friend");
             }
 
             for (int i = 0; i < count1; i++)
