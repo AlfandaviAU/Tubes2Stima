@@ -24,6 +24,7 @@ namespace TubesStima2
         public void tambahSimpul(int a, int b)
         {
             simpul[a].Add(b);
+            simpul[a].Sort();
         }
         public void DFS(int a)
         {
@@ -46,7 +47,24 @@ namespace TubesStima2
                 }
             }
         }
-        public int[] After(int a)
+        public void BFS(int a) {
+            bool[] dikunjungi = new bool[titik];
+            Queue<Int32> queue = new Queue<int>();
+            dikunjungi[a] = true;
+            queue.Enqueue(a);
+
+            while(queue.Count != 0) {
+                a = queue.Dequeue();
+                Console.Write(a+",");
+                foreach(int i in simpul[a]) {
+                    if(!dikunjungi[i]) {
+                        dikunjungi[i] = true;
+                        queue.Enqueue(i);
+                    }
+                }
+            }
+        }
+        public int[] After(int a) // After iki intine sama ae karo bfs tapi sampe tingkat 1 ae
         {
             int[] after = new int[titik];
             foreach (int i in simpul[a])
@@ -58,7 +76,7 @@ namespace TubesStima2
     }
     class Program
     {
-        static string ConverterKeChar(int num)
+        public static string ConverterKeChar(int num)
         {
             switch (num)
             {
@@ -145,7 +163,7 @@ namespace TubesStima2
 
             }
         }
-        static int ConverterKeInt(string character)
+        public static int ConverterKeInt(string character)
         {
             switch (character)
             {
@@ -232,9 +250,9 @@ namespace TubesStima2
 
             }
         }
-
-        static void Soal1(Graph a, Graph b, int a1, int b1, int titik)
+        static int ProsesDisek(Graph a, Graph b, int a1, int b1, int titik)
         {
+            int teman = 0;
             int[] temp1 = new int[titik];
             int[] temp2 = new int[titik];
             int count1 = 0;
@@ -255,13 +273,59 @@ namespace TubesStima2
             {
                 for (int j = 0; j < count2; j++)
                 {
-                    if (temp1[i] == temp2[j] && (temp1[i] != 0))
+                    if (a1 == temp2[j] || b1 == temp1[i])
+                    {
+                        teman = 1;
+                    }
+                    else if (temp1[i] == temp2[j] && (temp1[i] != 0))
                     {
                         count += 1;
                     }
                 }
             }
-            if (count > 0)
+            if (teman == 1)
+            {
+                return 0;
+            }
+            return count;
+        }
+        static int Soal1(Graph a, Graph b, int a1, int b1, int titik)
+        {
+            int teman = 0;
+            int[] temp1 = new int[titik];
+            int[] temp2 = new int[titik];
+            int count1 = 0;
+            int count2 = 0;
+            int count = 0;
+            foreach (int i in a.After(a1))
+            {
+                temp1[count1] = i;
+                count1++;
+            }
+            foreach (int j in b.After(b1))
+            {
+                temp2[count2] = j;
+                count2++;
+            }
+
+            for (int i = 0; i < count1; i++)
+            {
+                for (int j = 0; j < count2; j++)
+                {
+                    if(a1 == temp2[j] || b1 == temp1[i]) {
+                        teman = 1;
+                    }
+                    else if (temp1[i] == temp2[j] && (temp1[i] != 0))
+                    {
+                        count += 1;
+                    }
+                }
+            }
+            if(teman == 1) {
+                Console.WriteLine("Already friends");
+                return 0;
+            }
+            else if (count > 0)
             {
                 if (count != 1)
                 {
@@ -274,7 +338,8 @@ namespace TubesStima2
             }
             else
             {
-                Console.WriteLine("0 mutual friend");
+                Console.WriteLine("No mutual friend");
+                return 0;
             }
 
             for (int i = 0; i < count1; i++)
@@ -287,15 +352,34 @@ namespace TubesStima2
                     }
                 }
             }
+            return teman;
         }
+
         static void Main(string[] args)
         {
             try
             {
                 string filepath = @"E:\HMIF\Semester4\Strategi Algoritma\tubes 2\TubesStima2\TubesStima2\test.txt"; // nanti kau ubah pathnya
                 List<string> lines = new List<string>();
+                List<string> basis = new List<string>();
                 lines = File.ReadAllLines(filepath).ToList();
-                
+                for (int i = 1; i < lines.Count(); i++)
+                {
+                    
+                    char[] asu = { lines[i][0] };
+                    string temp2 = new string(asu);
+                    char[] temp3 = { lines[i][2] };
+                    string temp4 = new string(temp3);
+                    if (basis .Contains(temp2) == false){
+                        basis.Add(temp2);
+                    }
+                    if (basis.Contains(temp4) == false)
+                    {
+                        basis.Add(temp4);
+                    }
+                }
+
+
                 int count_graph = Int32.Parse(lines[0]);
 
                 Graph g = new Graph(count_graph);
@@ -315,14 +399,57 @@ namespace TubesStima2
 
                 }
 
-                Console.Write("Daftar rekomendasi teman untuk akun : ");
+                Console.Write("Choose Account : ");
                 string source = Console.ReadLine();
                 int src = ConverterKeInt(source);
 
+                Console.Write("Explore Friends With : ");
+                string pelakor1 = Console.ReadLine();
+
+                Console.Write("\n");
                 Console.Write("Nama akun : ");
-                string destination = Console.ReadLine();
-                int dest = ConverterKeInt(destination);
-                Soal1(g, g2, src, dest, count_graph);
+                Console.WriteLine(pelakor1);
+                int pelakor2 = ConverterKeInt(pelakor1);
+                Soal1(g, g2, src, pelakor2, count_graph);
+                Console.Write("\n");
+
+
+
+                int dest = ConverterKeInt(basis[0]);
+                int temp = ProsesDisek(g, g2, src, dest, count_graph);
+
+                var data = new List<Tuple<int, int>>()
+                {
+                    new Tuple<int,int>(1,temp)
+
+                };
+
+                for (int i = 1; i < basis.Count(); i++)
+                {
+                    int dest2 = ConverterKeInt(basis[i]);
+                    int temp2 = ProsesDisek(g, g2, src, dest2, count_graph);
+                    data.Add(new Tuple<int, int>(i+1, temp2));
+                }
+                data = data.OrderByDescending(t => t.Item2).ToList();
+                for (int i = 0; i < data.Count; i++)
+                {
+                    
+                    if (data[i].Item1 != pelakor2 && data[i].Item1 != src)
+                    {
+                        Console.Write("Nama akun : ");
+                        Console.WriteLine(ConverterKeChar(data[i].Item1));
+                        Soal1(g, g2, src, data[i].Item1, count_graph);
+                        Console.Write("\n");
+                    }
+
+                }
+
+
+
+                
+                
+
+
             }
 
             catch (FileNotFoundException e)
