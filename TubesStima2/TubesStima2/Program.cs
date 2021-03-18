@@ -43,6 +43,23 @@ namespace TubesStima2
                 }
             }
         }
+        public void BFS(int a) {
+            bool[] dikunjungi = new bool[titik];
+            Queue<Int32> queue = new Queue<int>();
+            dikunjungi[a] = true;
+            queue.Enqueue(a);
+
+            while(queue.Count != 0) {
+                a = queue.Dequeue();
+                Console.Write(a+",");
+                foreach(int i in simpul[a]) {
+                    if(!dikunjungi[i]) {
+                        dikunjungi[i] = true;
+                        queue.Enqueue(i);
+                    }
+                }
+            }
+        }
         public int[] After(int a)
         {
             int[] after = new int[titik];
