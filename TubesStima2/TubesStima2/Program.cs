@@ -22,6 +22,7 @@ namespace TubesStima2
         public void tambahSimpul(int a, int b)
         {
             simpul[a].Add(b);
+            simpul[a].Sort();
         }
         public void DFS(int a)
         {
