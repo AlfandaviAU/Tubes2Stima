@@ -289,6 +289,7 @@ namespace TubesStima2
             }
             return count;
         }
+        // Soal1(g, g2, src, data[i].Item1, count_graph);
         static int Soal1(Graph a, Graph b, int a1, int b1, int titik)
         {
             int teman = 0;
@@ -355,11 +356,67 @@ namespace TubesStima2
             return teman;
         }
 
+        static void Soal2DFS(Graph g,int awal,int akhir,int[] dikunjungi,int[] result,int tingkat) {
+            int lanjut = 0;
+            dikunjungi[awal] = 1;
+            if(awal == akhir) {
+                int x = 0;
+                Console.WriteLine(ConverterKeChar(awal + " dan " + akhir))
+                if(tingkat == 0) {
+                    Console.WriteLine("You are searching for yourself");
+                }
+                else if(tingkat == 1) {
+                    Console.WriteLine("You are already friends");
+                }
+                else if(tingkat == 2) {
+                    Console.WriteLine("1st-degree connection");
+                }
+                else if(tingkat == 3) {
+                    Console.WriteLine("2nd-degree connection");
+                }
+                else if(tingkat == 4) {
+                    Console.WriteLine("3rd-degree connection");
+                }
+                else {
+                    Console.WriteLine(tingkat + " th-degree connection");
+                }
+                Console.Write(ConverterKeChar(awal));
+                if(tingkat > 0) {
+                    while(x <= tingkat) {
+                        x = x + 1;
+                        if(x < tingkat) {
+                            Console.Write(" -> ");
+                        }
+                        Console.Write(ConverterKeChar(result[x]))
+                    }
+                }
+                Console.WriteLine("");
+                
+            }
+            else {
+                int[] cabang = g.After(awal);
+                foreach(int z in cabang) {
+                    if(dikunjungi[z] == 0) {
+                        lanjut = 1;
+                    }
+                }
+                if(lanjut == 1) {
+                    foreach(int z in cabang) {
+                        result[tingkat] = z;
+                        Soal2DFS(g,z,akhir,dikunjungi,result,tingkat+1);
+                    }
+                }
+            }
+        }
+        static void Soal2BFS(Graph g,int awal,int akhir) {
+            
+        }
+
         static void Main(string[] args)
         {
             try
             {
-                string filepath = @"E:\HMIF\Semester4\Strategi Algoritma\tubes 2\TubesStima2\TubesStima2\test.txt"; // nanti kau ubah pathnya
+                string filepath = @"test.txt"; // nanti kau ubah pathnya
                 List<string> lines = new List<string>();
                 List<string> basis = new List<string>();
                 lines = File.ReadAllLines(filepath).ToList();
