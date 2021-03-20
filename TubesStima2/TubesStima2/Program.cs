@@ -76,6 +76,33 @@ namespace TubesStima2
     }
     class Program
     {
+        //public static convertGraph(string[] )
+        public static string converterAsu(string a, List<string> basis, List<string> panduan2)
+        {
+            int res = 0;
+            for (int i = 0; i < basis.Count; i++)
+            {
+                if (basis[i] == a)
+                {
+                    res = i;
+                }
+            }
+            return panduan2[res];
+        }
+
+        public static string reconverterAsu(string a, List<string> basis, List<string> panduan2)
+        {
+            int res = 0;
+            for (int i = 0; i < panduan2.Count; i++)
+            {
+                if (panduan2[i] == a)
+                {
+                    res = i;
+                }
+            }
+            return basis[res];
+        }
+
         public static string ConverterKeChar(int num)
         {
             switch (num)
@@ -389,7 +416,7 @@ namespace TubesStima2
                         if(x < tingkat) {
                             Console.Write(" -> ");
                         }
-                        Console.Write(ConverterKeChar(result[x]))
+                        Console.Write(ConverterKeChar(result[x]));
                     }
                 }
                 Console.WriteLine("");
@@ -418,9 +445,13 @@ namespace TubesStima2
         {
             try
             {
-                string filepath = @"test.txt"; // nanti kau ubah pathnya
+                string filepath = @"C:\Users\alfan\Documents\GitHub\Tubes2Stima\TubesStima2\TubesStima2\test.txt"; // nanti kau ubah pathnya
                 List<string> lines = new List<string>();
                 List<string> basis = new List<string>();
+
+
+                List<string> panduan2 = new List<string>();
+
                 lines = File.ReadAllLines(filepath).ToList();
                 for (int i = 1; i < lines.Count(); i++)
                 {
@@ -438,7 +469,20 @@ namespace TubesStima2
                     }
                 }
 
-
+                Console.WriteLine("==========BASIS==========");
+                foreach (string a in basis)
+                {
+                    Console.WriteLine(a);
+                }
+                for (int i = 0; i < basis.Count; i++)
+                {
+                    panduan2.Add(ConverterKeChar(i + 1));
+                }
+                Console.WriteLine("=========PANDUAN2========");
+                foreach(string a in panduan2)
+                {
+                    Console.WriteLine(a);
+                }
                 int count_graph = Int32.Parse(lines[0]);
 
                 Graph g = new Graph(count_graph);
@@ -447,34 +491,37 @@ namespace TubesStima2
                 for (int z = 1; z <= count_graph; z++)
                 {
                     char[] c1 = { lines[z][0] };
-                    string s1 = new string (c1);
-                    int temp1 = ConverterKeInt(s1);
+                    string s1 = new string(c1);
+                    string ss1 = converterAsu(s1, basis, panduan2);
+                    int temp1 = ConverterKeInt(ss1);
 
                     char[] c2 = { lines[z][2] };
                     string s2 = new string(c2);
-                    int temp2 = ConverterKeInt(s2);
+                    string ss2 = converterAsu(s2, basis, panduan2);
+                    int temp2 = ConverterKeInt(ss2);
                     g.tambahSimpul(temp1, temp2);
                     g2.tambahSimpul(temp2, temp1);
 
                 }
 
                 Console.Write("Choose Account : ");
-                string source = Console.ReadLine();
-                int src = ConverterKeInt(source);
+                string aasu1 = Console.ReadLine();
+                int src = ConverterKeInt(converterAsu(aasu1, basis, panduan2));
 
                 Console.Write("Explore Friends With : ");
-                string pelakor1 = Console.ReadLine();
+                string asu1 = Console.ReadLine();
+                string pelakor1 = converterAsu(asu1,basis,panduan2);
 
                 Console.Write("\n");
                 Console.Write("Nama akun : ");
-                Console.WriteLine(pelakor1);
+                Console.WriteLine(asu1);
                 int pelakor2 = ConverterKeInt(pelakor1);
                 Soal1(g, g2, src, pelakor2, count_graph);
                 Console.Write("\n");
 
 
 
-                int dest = ConverterKeInt(basis[0]);
+                int dest = ConverterKeInt(panduan2[0]);
                 int temp = ProsesDisek(g, g2, src, dest, count_graph);
 
                 var data = new List<Tuple<int, int>>()
@@ -483,20 +530,21 @@ namespace TubesStima2
 
                 };
 
-                for (int i = 1; i < basis.Count(); i++)
+                for (int i = 1; i < panduan2.Count(); i++)
                 {
-                    int dest2 = ConverterKeInt(basis[i]);
+                    int dest2 = ConverterKeInt(panduan2[i]);
                     int temp2 = ProsesDisek(g, g2, src, dest2, count_graph);
-                    data.Add(new Tuple<int, int>(i+1, temp2));
+                    data.Add(new Tuple<int, int>(i + 1, temp2));
                 }
                 data = data.OrderByDescending(t => t.Item2).ToList();
                 for (int i = 0; i < data.Count; i++)
                 {
-                    
+
                     if (data[i].Item1 != pelakor2 && data[i].Item1 != src)
                     {
                         Console.Write("Nama akun : ");
-                        Console.WriteLine(ConverterKeChar(data[i].Item1));
+                        string asuu = ConverterKeChar(data[i].Item1);
+                        Console.WriteLine(reconverterAsu(asuu,basis,panduan2));
                         Soal1(g, g2, src, data[i].Item1, count_graph);
                         Console.Write("\n");
                     }
@@ -505,8 +553,13 @@ namespace TubesStima2
 
 
 
-                
-                
+
+
+
+
+
+
+
 
 
             }

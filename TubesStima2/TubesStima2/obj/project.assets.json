@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\HMIF\\Semester4\\Strategi Algoritma\\tubes 2\\TubesStima2\\TubesStima2\\TubesStima2.csproj",
+      "projectUniqueName": "C:\\Users\\alfan\\Documents\\GitHub\\Tubes2Stima\\TubesStima2\\TubesStima2\\TubesStima2.csproj",
       "projectName": "TubesStima2",
-      "projectPath": "E:\\HMIF\\Semester4\\Strategi Algoritma\\tubes 2\\TubesStima2\\TubesStima2\\TubesStima2.csproj",
+      "projectPath": "C:\\Users\\alfan\\Documents\\GitHub\\Tubes2Stima\\TubesStima2\\TubesStima2\\TubesStima2.csproj",
       "packagesPath": "C:\\Users\\alfan\\.nuget\\packages\\",
-      "outputPath": "E:\\HMIF\\Semester4\\Strategi Algoritma\\tubes 2\\TubesStima2\\TubesStima2\\obj\\",
+      "outputPath": "C:\\Users\\alfan\\Documents\\GitHub\\Tubes2Stima\\TubesStima2\\TubesStima2\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
