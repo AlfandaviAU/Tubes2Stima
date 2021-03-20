@@ -468,7 +468,6 @@ namespace TubesStima2
                         basis.Add(temp4);
                     }
                 }
-
                 Console.WriteLine("==========BASIS==========");
                 foreach (string a in basis)
                 {
@@ -511,13 +510,33 @@ namespace TubesStima2
                 Console.Write("Explore Friends With : ");
                 string asu1 = Console.ReadLine();
                 string pelakor1 = converterAsu(asu1,basis,panduan2);
-
-                Console.Write("\n");
-                Console.Write("Nama akun : ");
-                Console.WriteLine(asu1);
+                bool cond = false;
+                for (int i = 0; i < basis.Count; i++)
+                {
+                    
+                    if (pelakor1 == basis[i])
+                    {
+                        cond = true;
+                    }
+                }
                 int pelakor2 = ConverterKeInt(pelakor1);
-                Soal1(g, g2, src, pelakor2, count_graph);
-                Console.Write("\n");
+                if (cond == true)
+                {
+                    Console.Write("\n");
+                    Console.Write("Nama akun : ");
+                    Console.WriteLine(asu1);
+                    
+                    Soal1(g, g2, src, pelakor2, count_graph);
+                    Console.Write("\n");
+                }
+                else
+                {
+                    Console.Write("\n");
+                    Console.Write("Nama akun : ");
+                    Console.WriteLine(asu1);
+                    Console.WriteLine("Tidak ditemukan\n");
+                }
+                
 
 
 
