@@ -383,14 +383,16 @@ namespace TubesStima2
             return teman;
         }
 
-        static void Soal2DFS(Graph g,int awal,int akhir,int[] dikunjungi,int[] result,int tingkat) {
-            int lanjut = 0;
+        static bool Soal2DFS(Graph g,int awal,int akhir,int[] dikunjungi,int[] result,int tingkat,List<string> basis,List<string> panduan2) {
+            string temp;
             dikunjungi[awal] = 1;
             if(awal == akhir) {
                 int x = 0;
-                Console.Write(ConverterKeChar(awal));
+                temp = ConverterKeChar(result[0]);
+                Console.Write(reconverterAsu(temp,basis,panduan2));
                 Console.Write(" dan ");
-                Console.WriteLine(ConverterKeChar(akhir));
+                temp = ConverterKeChar(akhir);
+                Console.WriteLine(reconverterAsu(temp,basis,panduan2));
                 if(tingkat == 0) {
                     Console.WriteLine("You are searching for yourself");
                 }
@@ -407,35 +409,40 @@ namespace TubesStima2
                     Console.WriteLine("3rd-degree connection");
                 }
                 else {
-                    Console.WriteLine(tingkat + " th-degree connection");
+                    Console.WriteLine((tingkat - 1) + " th-degree connection");
                 }
-                Console.Write(ConverterKeChar(awal));
+                temp = ConverterKeChar(result[0]);
+                Console.Write(reconverterAsu(temp,basis,panduan2));
+                x = x + 1;
                 if(tingkat > 0) {
-                    while(x <= tingkat) {
+                    while (x < tingkat) {
+                        Console.Write(" -> ");
+                        temp = ConverterKeChar(result[x]);
+                        Console.Write(reconverterAsu(temp,basis,panduan2));
                         x = x + 1;
-                        if(x < tingkat) {
-                            Console.Write(" -> ");
-                        }
-                        Console.Write(ConverterKeChar(result[x]));
                     }
+                    Console.Write(" -> ");
+                    temp = ConverterKeChar(result[x]);
+                    Console.Write(reconverterAsu(temp, basis, panduan2));
                 }
                 Console.WriteLine("");
+                return true;
                 
             }
             else {
                 int[] cabang = g.After(awal);
                 foreach(int z in cabang) {
                     if(dikunjungi[z] == 0) {
-                        lanjut = 1;
-                    }
-                }
-                if(lanjut == 1) {
-                    foreach(int z in cabang) {
-                        result[tingkat] = z;
-                        Soal2DFS(g,z,akhir,dikunjungi,result,tingkat+1);
+                        result[tingkat+1] = z;
+                        bool yesno = Soal2DFS(g, z, akhir, dikunjungi, result, tingkat + 1,basis,panduan2);
+                        if(yesno)
+                        {
+                            return true;
+                        }
                     }
                 }
             }
+            return false;
         }
         static void Soal2BFS(Graph g,int awal,int akhir) {
             
@@ -445,7 +452,7 @@ namespace TubesStima2
         {
             try
             {
-                string filepath = @"C:\Users\alfan\Documents\GitHub\Tubes2Stima\TubesStima2\TubesStima2\test.txt"; // nanti kau ubah pathnya
+                string filepath = @"C:\git\Tubes2Stima\TubesStima2\TubesStima2\HalfTree.txt"; // nanti kau ubah pathnya
                 List<string> lines = new List<string>();
                 List<string> basis = new List<string>();
 
@@ -462,12 +469,14 @@ namespace TubesStima2
                     string temp4 = new string(temp3);
                     if (basis .Contains(temp2) == false){
                         basis.Add(temp2);
+                        
                     }
                     if (basis.Contains(temp4) == false)
                     {
                         basis.Add(temp4);
                     }
                 }
+                basis.Sort();
                 Console.WriteLine("==========BASIS==========");
                 foreach (string a in basis)
                 {
@@ -486,6 +495,7 @@ namespace TubesStima2
 
                 Graph g = new Graph(count_graph);
                 Graph g2 = new Graph(count_graph);
+                Graph g3 = new Graph(count_graph + 1);
 
                 for (int z = 1; z <= count_graph; z++)
                 {
@@ -500,6 +510,8 @@ namespace TubesStima2
                     int temp2 = ConverterKeInt(ss2);
                     g.tambahSimpul(temp1, temp2);
                     g2.tambahSimpul(temp2, temp1);
+                    g3.tambahSimpul(temp1,temp2);
+                    g3.tambahSimpul(temp2,temp1);
 
                 }
 
@@ -570,6 +582,27 @@ namespace TubesStima2
 
                 }
 
+                // explore friends
+                Console.Write("Explore with : ");
+                string masuk1 = Console.ReadLine();
+                string dummy1 = converterAsu(masuk1,basis,panduan2);
+                int awal = ConverterKeInt(dummy1);
+
+                Console.Write("Choose account : ");
+                string masuk2 = Console.ReadLine();
+                string dummy2 = converterAsu(masuk2,basis,panduan2);
+                int akhir = ConverterKeInt(masuk2);
+
+                // static bool Soal2DFS(Graph g,int awal,int akhir,int[] dikunjungi,int[] result,int tingkat)
+                int[] dikunjungi = new int[count_graph + 1];
+                int[] result = new int[count_graph + 1];
+                result[0] = awal;
+                bool hasil = Soal2DFS(g3,awal,akhir,dikunjungi,result,0,basis,panduan2);
+                if(hasil == false) {
+                    Console.WriteLine(masuk1 + " dan " + masuk2);
+                    Console.WriteLine("Tidak ada jalur koneksi yang tersedia");
+                    Console.WriteLine("Anda harus memulai koneksi baru itu sendiri.");
+                }
 
 
 

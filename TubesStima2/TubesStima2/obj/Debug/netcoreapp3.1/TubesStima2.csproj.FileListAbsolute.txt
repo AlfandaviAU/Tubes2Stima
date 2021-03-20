@@ -37,3 +37,16 @@ C:\Users\alfan\Documents\GitHub\Tubes2Stima\TubesStima2\TubesStima2\bin\Debug\ne
 C:\Users\alfan\Documents\GitHub\Tubes2Stima\TubesStima2\TubesStima2\bin\Debug\netcoreapp3.1\TubesStima2.dll
 C:\Users\alfan\Documents\GitHub\Tubes2Stima\TubesStima2\TubesStima2\bin\Debug\netcoreapp3.1\TubesStima2.pdb
 C:\Users\alfan\Documents\GitHub\Tubes2Stima\TubesStima2\TubesStima2\obj\Debug\netcoreapp3.1\TubesStima2.genruntimeconfig.cache
+C:\git\Tubes2Stima\TubesStima2\TubesStima2\bin\Debug\netcoreapp3.1\TubesStima2.exe
+C:\git\Tubes2Stima\TubesStima2\TubesStima2\bin\Debug\netcoreapp3.1\TubesStima2.deps.json
+C:\git\Tubes2Stima\TubesStima2\TubesStima2\bin\Debug\netcoreapp3.1\TubesStima2.runtimeconfig.json
+C:\git\Tubes2Stima\TubesStima2\TubesStima2\bin\Debug\netcoreapp3.1\TubesStima2.runtimeconfig.dev.json
+C:\git\Tubes2Stima\TubesStima2\TubesStima2\bin\Debug\netcoreapp3.1\TubesStima2.dll
+C:\git\Tubes2Stima\TubesStima2\TubesStima2\bin\Debug\netcoreapp3.1\TubesStima2.pdb
+C:\git\Tubes2Stima\TubesStima2\TubesStima2\obj\Debug\netcoreapp3.1\TubesStima2.csprojAssemblyReference.cache
+C:\git\Tubes2Stima\TubesStima2\TubesStima2\obj\Debug\netcoreapp3.1\TubesStima2.AssemblyInfoInputs.cache
+C:\git\Tubes2Stima\TubesStima2\TubesStima2\obj\Debug\netcoreapp3.1\TubesStima2.AssemblyInfo.cs
+C:\git\Tubes2Stima\TubesStima2\TubesStima2\obj\Debug\netcoreapp3.1\TubesStima2.csproj.CoreCompileInputs.cache
+C:\git\Tubes2Stima\TubesStima2\TubesStima2\obj\Debug\netcoreapp3.1\TubesStima2.dll
+C:\git\Tubes2Stima\TubesStima2\TubesStima2\obj\Debug\netcoreapp3.1\TubesStima2.pdb
+C:\git\Tubes2Stima\TubesStima2\TubesStima2\obj\Debug\netcoreapp3.1\TubesStima2.genruntimeconfig.cache
