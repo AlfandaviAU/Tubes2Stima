@@ -361,7 +361,9 @@ namespace TubesStima2
             dikunjungi[awal] = 1;
             if(awal == akhir) {
                 int x = 0;
-                Console.WriteLine(ConverterKeChar(awal + " dan " + akhir))
+                Console.Write(ConverterKeChar(awal));
+                Console.Write(" dan ");
+                Console.WriteLine(ConverterKeChar(akhir));
                 if(tingkat == 0) {
                     Console.WriteLine("You are searching for yourself");
                 }
