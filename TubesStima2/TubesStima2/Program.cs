@@ -438,7 +438,7 @@ namespace TubesStima2
         {
             try
             {
-                string filepath = @"C:\git\Tubes2Stima\TubesStima2\TubesStima2\HalfTree.txt"; // nanti kau ubah pathnya
+                string filepath = @"C:\git\Tubes2Stima\TubesStima2\TubesStima2\random-graph.txt"; // nanti kau ubah pathnya
                 List<string> lines = new List<string>();
                 List<string> basis = new List<string>();
 
