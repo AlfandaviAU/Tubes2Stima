@@ -277,34 +277,27 @@ namespace TubesStima2
 
             }
         }
-        static int ProsesDisek(Graph a, Graph b, int a1, int b1, int titik)
+        static int ProsesDisek(Graph a, int a1, int b1, int titik)
         {
             int teman = 0;
             int[] temp1 = new int[titik];
-            int[] temp2 = new int[titik];
             int count1 = 0;
-            int count2 = 0;
             int count = 0;
             foreach (int i in a.After(a1))
             {
                 temp1[count1] = i;
                 count1++;
             }
-            foreach (int j in b.After(b1))
-            {
-                temp2[count2] = j;
-                count2++;
-            }
 
             for (int i = 0; i < count1; i++)
             {
-                for (int j = 0; j < count2; j++)
+                for (int j = 0; j < count1; j++)
                 {
-                    if (a1 == temp2[j] || b1 == temp1[i])
+                    if (a1 == temp1[j] || b1 == temp1[i])
                     {
                         teman = 1;
                     }
-                    else if (temp1[i] == temp2[j] && (temp1[i] != 0))
+                    else if (temp1[i] == temp1[j] && (temp1[i] != 0))
                     {
                         count += 1;
                     }
@@ -317,33 +310,26 @@ namespace TubesStima2
             return count;
         }
         // Soal1(g, g2, src, data[i].Item1, count_graph);
-        static int Soal1(Graph a, Graph b, int a1, int b1, int titik)
+        static int Soal1(Graph a, int a1, int b1, int titik)
         {
             int teman = 0;
             int[] temp1 = new int[titik];
-            int[] temp2 = new int[titik];
             int count1 = 0;
-            int count2 = 0;
             int count = 0;
             foreach (int i in a.After(a1))
             {
                 temp1[count1] = i;
                 count1++;
             }
-            foreach (int j in b.After(b1))
-            {
-                temp2[count2] = j;
-                count2++;
-            }
 
             for (int i = 0; i < count1; i++)
             {
-                for (int j = 0; j < count2; j++)
+                for (int j = 0; j < count1; j++)
                 {
-                    if(a1 == temp2[j] || b1 == temp1[i]) {
+                    if(a1 == temp1[j] || b1 == temp1[i]) {
                         teman = 1;
                     }
-                    else if (temp1[i] == temp2[j] && (temp1[i] != 0))
+                    else if (temp1[i] == temp1[j] && (temp1[i] != 0))
                     {
                         count += 1;
                     }
@@ -372,9 +358,9 @@ namespace TubesStima2
 
             for (int i = 0; i < count1; i++)
             {
-                for (int j = 0; j < count2; j++)
+                for (int j = 0; j < count1; j++)
                 {
-                    if (temp1[i] == temp2[j] && (temp1[i] != 0))
+                    if (temp1[i] == temp1[j] && (temp1[i] != 0))
                     {
                         Console.WriteLine(ConverterKeChar(temp1[i]));
                     }
@@ -538,7 +524,7 @@ namespace TubesStima2
                     Console.Write("Nama akun : ");
                     Console.WriteLine(asu1);
                     
-                    Soal1(g, g2, src, pelakor2, count_graph);
+                    Soal1(g3, src, pelakor2, count_graph);
                     Console.Write("\n");
                 }
                 else
@@ -553,7 +539,7 @@ namespace TubesStima2
 
 
                 int dest = ConverterKeInt(panduan2[0]);
-                int temp = ProsesDisek(g, g2, src, dest, count_graph);
+                int temp = ProsesDisek(g3, src, dest, count_graph);
 
                 var data = new List<Tuple<int, int>>()
                 {
@@ -564,7 +550,7 @@ namespace TubesStima2
                 for (int i = 1; i < panduan2.Count(); i++)
                 {
                     int dest2 = ConverterKeInt(panduan2[i]);
-                    int temp2 = ProsesDisek(g, g2, src, dest2, count_graph);
+                    int temp2 = ProsesDisek(g3, src, dest2, count_graph);
                     data.Add(new Tuple<int, int>(i + 1, temp2));
                 }
                 data = data.OrderByDescending(t => t.Item2).ToList();
@@ -576,7 +562,7 @@ namespace TubesStima2
                         Console.Write("Nama akun : ");
                         string asuu = ConverterKeChar(data[i].Item1);
                         Console.WriteLine(reconverterAsu(asuu,basis,panduan2));
-                        Soal1(g, g2, src, data[i].Item1, count_graph);
+                        Soal1(g3, src, data[i].Item1, count_graph);
                         Console.Write("\n");
                     }
 
@@ -591,7 +577,7 @@ namespace TubesStima2
                 Console.Write("Choose account : ");
                 string masuk2 = Console.ReadLine();
                 string dummy2 = converterAsu(masuk2,basis,panduan2);
-                int akhir = ConverterKeInt(masuk2);
+                int akhir = ConverterKeInt(dummy2);
 
                 // static bool Soal2DFS(Graph g,int awal,int akhir,int[] dikunjungi,int[] result,int tingkat)
                 int[] dikunjungi = new int[count_graph + 1];
