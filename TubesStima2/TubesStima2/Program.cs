@@ -277,27 +277,40 @@ namespace TubesStima2
 
             }
         }
-        static int ProsesDisek(Graph a, int a1, int b1, int titik)
+        static int ProsesDisek(Graph a, int src, int dest, int titik)
         {
             int teman = 0;
             int[] temp1 = new int[titik];
-            int count1 = 0;
+            int[] temp2 = new int[titik];
             int count = 0;
-            foreach (int i in a.After(a1))
+            int count1 = 0;
+            int count2 = 0;
+            for (int i = 0; i < a.After(src).Count(); i++)
             {
-                temp1[count1] = i;
-                count1++;
+                if (a.After(src)[i] != 0)
+                {
+                    temp1[count1] = a.After(src)[i];
+                    count1++;
+                }
+            }
+            for (int i = 0; i < a.After(dest).Count(); i++)
+            {
+                if (a.After(dest)[i] != 0)
+                {
+                    temp2[count2] = a.After(dest)[i];
+                    count2++;
+                }
             }
 
             for (int i = 0; i < count1; i++)
             {
-                for (int j = 0; j < count1; j++)
+                for (int j = 0; j < count2; j++)
                 {
-                    if (a1 == temp1[j] || b1 == temp1[i])
+                    if (src == temp2[j] || dest == temp1[i])
                     {
                         teman = 1;
                     }
-                    else if (temp1[i] == temp1[j] && (temp1[i] != 0))
+                    else if (temp1[i] == temp2[j] && (temp1[i] != 0))
                     {
                         count += 1;
                     }
@@ -310,32 +323,47 @@ namespace TubesStima2
             return count;
         }
         // Soal1(g, g2, src, data[i].Item1, count_graph);
-        static int Soal1(Graph a, int a1, int b1, int titik)
+        static int Soal1(Graph a, int src, int dest, int titik)
         {
             int teman = 0;
             int[] temp1 = new int[titik];
-            int count1 = 0;
+            int[] temp2 = new int[titik];
             int count = 0;
-            foreach (int i in a.After(a1))
+            int count1 = 0;
+            int count2 = 0;
+            for (int i = 0; i < a.After(src).Count(); i++)
             {
-                temp1[count1] = i;
-                count1++;
+                if (a.After(src)[i] != 0)
+                {
+                    temp1[count1] = a.After(src)[i];
+                    count1++;
+                }
+            }
+            for (int i = 0; i < a.After(dest).Count(); i++)
+            {
+                if (a.After(dest)[i] != 0)
+                {
+                    temp2[count2] = a.After(dest)[i];
+                    count2++;
+                }
             }
 
             for (int i = 0; i < count1; i++)
             {
-                for (int j = 0; j < count1; j++)
+                for (int j = 0; j < count2; j++)
                 {
-                    if(a1 == temp1[j] || b1 == temp1[i]) {
+                    if (src == temp2[j] || dest == temp1[i])
+                    {
                         teman = 1;
                     }
-                    else if (temp1[i] == temp1[j] && (temp1[i] != 0))
+                    else if (temp1[i] == temp2[j] && (temp1[i] != 0))
                     {
                         count += 1;
                     }
                 }
             }
-            if(teman == 1) {
+            if (teman == 1)
+            {
                 Console.WriteLine("Already friends");
                 return 0;
             }
@@ -358,9 +386,9 @@ namespace TubesStima2
 
             for (int i = 0; i < count1; i++)
             {
-                for (int j = 0; j < count1; j++)
+                for (int j = 0; j < count2; j++)
                 {
-                    if (temp1[i] == temp1[j] && (temp1[i] != 0))
+                    if (temp1[i] == temp2[j] && (temp1[i] != 0))
                     {
                         Console.WriteLine(ConverterKeChar(temp1[i]));
                     }
@@ -438,7 +466,7 @@ namespace TubesStima2
         {
             try
             {
-                string filepath = @"C:\git\Tubes2Stima\TubesStima2\TubesStima2\random-graph.txt"; // nanti kau ubah pathnya
+                string filepath = @"C:\Users\alfan\Documents\GitHub\Tubes2Stima\TubesStima2\TubesStima2\Circular.txt"; // nanti kau ubah pathnya
                 List<string> lines = new List<string>();
                 List<string> basis = new List<string>();
 
@@ -494,12 +522,11 @@ namespace TubesStima2
                     string s2 = new string(c2);
                     string ss2 = converterAsu(s2, basis, panduan2);
                     int temp2 = ConverterKeInt(ss2);
-                    g.tambahSimpul(temp1, temp2);
-                    g2.tambahSimpul(temp2, temp1);
                     g3.tambahSimpul(temp1,temp2);
                     g3.tambahSimpul(temp2,temp1);
 
                 }
+
 
                 Console.Write("Choose Account : ");
                 string aasu1 = Console.ReadLine();
@@ -507,12 +534,11 @@ namespace TubesStima2
 
                 Console.Write("Explore Friends With : ");
                 string asu1 = Console.ReadLine();
-                string pelakor1 = converterAsu(asu1,basis,panduan2);
+                string pelakor1 = converterAsu(asu1, basis, panduan2);
                 bool cond = false;
                 for (int i = 0; i < basis.Count; i++)
                 {
-                    
-                    if (pelakor1 == basis[i])
+                    if (pelakor1 == panduan2[i])
                     {
                         cond = true;
                     }
@@ -523,7 +549,7 @@ namespace TubesStima2
                     Console.Write("\n");
                     Console.Write("Nama akun : ");
                     Console.WriteLine(asu1);
-                    
+
                     Soal1(g3, src, pelakor2, count_graph);
                     Console.Write("\n");
                 }
@@ -534,11 +560,7 @@ namespace TubesStima2
                     Console.WriteLine(asu1);
                     Console.WriteLine("Tidak ditemukan\n");
                 }
-                
-
-
-
-                int dest = ConverterKeInt(panduan2[0]);
+                int dest = ConverterKeInt(pelakor1);
                 int temp = ProsesDisek(g3, src, dest, count_graph);
 
                 var data = new List<Tuple<int, int>>()
@@ -561,44 +583,34 @@ namespace TubesStima2
                     {
                         Console.Write("Nama akun : ");
                         string asuu = ConverterKeChar(data[i].Item1);
-                        Console.WriteLine(reconverterAsu(asuu,basis,panduan2));
+                        Console.WriteLine(reconverterAsu(asuu, basis, panduan2));
                         Soal1(g3, src, data[i].Item1, count_graph);
                         Console.Write("\n");
                     }
 
                 }
-
                 // explore friends
                 Console.Write("Explore with : ");
                 string masuk1 = Console.ReadLine();
-                string dummy1 = converterAsu(masuk1,basis,panduan2);
+                string dummy1 = converterAsu(masuk1, basis, panduan2);
                 int awal = ConverterKeInt(dummy1);
 
                 Console.Write("Choose account : ");
                 string masuk2 = Console.ReadLine();
-                string dummy2 = converterAsu(masuk2,basis,panduan2);
+                string dummy2 = converterAsu(masuk2, basis, panduan2);
                 int akhir = ConverterKeInt(dummy2);
 
                 // static bool Soal2DFS(Graph g,int awal,int akhir,int[] dikunjungi,int[] result,int tingkat)
                 int[] dikunjungi = new int[count_graph + 1];
                 int[] result = new int[count_graph + 1];
                 result[0] = awal;
-                bool hasil = Soal2DFS(g3,awal,akhir,dikunjungi,result,0,basis,panduan2);
-                if(hasil == false) {
+                bool hasil = Soal2DFS(g3, awal, akhir, dikunjungi, result, 0, basis, panduan2);
+                if (hasil == false)
+                {
                     Console.WriteLine(masuk1 + " dan " + masuk2);
                     Console.WriteLine("Tidak ada jalur koneksi yang tersedia");
                     Console.WriteLine("Anda harus memulai koneksi baru itu sendiri.");
                 }
-
-
-
-
-
-
-
-
-
-
 
             }
 
