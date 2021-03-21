@@ -452,7 +452,7 @@ namespace TubesStima2
         {
             try
             {
-                string filepath = @"C:\git\Tubes2Stima\TubesStima2\TubesStima2\HalfTree.txt"; // nanti kau ubah pathnya
+                string filepath = @"C:\git\Tubes2Stima\TubesStima2\TubesStima2\random-graph.txt"; // nanti kau ubah pathnya
                 List<string> lines = new List<string>();
                 List<string> basis = new List<string>();
 
@@ -591,7 +591,7 @@ namespace TubesStima2
                 Console.Write("Choose account : ");
                 string masuk2 = Console.ReadLine();
                 string dummy2 = converterAsu(masuk2,basis,panduan2);
-                int akhir = ConverterKeInt(masuk2);
+                int akhir = ConverterKeInt(dummy2);
 
                 // static bool Soal2DFS(Graph g,int awal,int akhir,int[] dikunjungi,int[] result,int tingkat)
                 int[] dikunjungi = new int[count_graph + 1];
