@@ -408,10 +408,10 @@ namespace TubesStima2
                 temp = ConverterKeChar(akhir);
                 Console.WriteLine(reconverterAsu(temp,basis,panduan2));
                 if(tingkat == 0) {
-                    Console.WriteLine("You are searching for yourself");
+                    Console.WriteLine("You are searchig for yourself");
                 }
                 else if(tingkat == 1) {
-                    Console.WriteLine("You are already friends");
+                    Console.WriteLine("Direct connection");
                 }
                 else if(tingkat == 2) {
                     Console.WriteLine("1st-degree connection");
@@ -425,23 +425,19 @@ namespace TubesStima2
                 else {
                     Console.WriteLine((tingkat - 1) + " th-degree connection");
                 }
-                temp = ConverterKeChar(result[0]);
-                Console.Write(reconverterAsu(temp,basis,panduan2));
-                x = x + 1;
-                if(tingkat > 0) {
-                    while (x < tingkat) {
-                        Console.Write(" -> ");
+                if (tingkat >= 1)
+                {
+                    while (x < tingkat)
+                    {
                         temp = ConverterKeChar(result[x]);
-                        Console.Write(reconverterAsu(temp,basis,panduan2));
+                        Console.Write(reconverterAsu(temp, basis, panduan2));
+                        Console.Write(" -> ");
                         x = x + 1;
                     }
-                    Console.Write(" -> ");
                     temp = ConverterKeChar(result[x]);
-                    Console.Write(reconverterAsu(temp, basis, panduan2));
+                    Console.WriteLine(reconverterAsu(temp, basis, panduan2));
                 }
-                Console.WriteLine("");
                 return true;
-                
             }
             else {
                 int[] cabang = g.After(awal);
@@ -458,15 +454,104 @@ namespace TubesStima2
             }
             return false;
         }
-        static void Soal2BFS(Graph g,int awal,int akhir) {
-            
+        static void Soal2BFS(Graph g,int a, int b, int count_graph, List<string> basis, List<string> panduan2)
+        {
+            int x;
+            string temp;
+            int[] prev = new int[count_graph + 1];
+            bool found = false;
+            bool[] dikunjungi = new bool[count_graph + 1];
+            Queue<Int32> queue = new Queue<int>();
+            dikunjungi[a] = true;
+            prev[a] = -1;
+            queue.Enqueue(a);
+
+            while (queue.Count != 0 && found == false)
+            {
+                x = queue.Dequeue();
+                if (x == b)
+                {
+                    found = true;
+                }
+                else
+                {
+                    foreach (int i in g.After(x))
+                    {
+                        if (!dikunjungi[i])
+                        {
+                            dikunjungi[i] = true;
+                            prev[i] = x;
+                            queue.Enqueue(i);
+                        }
+                    }
+                }
+            }
+            temp = ConverterKeChar(a);
+            Console.Write(reconverterAsu(temp, basis, panduan2));
+            Console.Write(" dan ");
+            temp = ConverterKeChar(b);
+            Console.WriteLine(reconverterAsu(temp, basis, panduan2));
+            if (found)
+            {
+                Stack<Int32> result = new Stack<int>();
+                int carry = b;
+                while (carry != -1)
+                {
+                    result.Push(carry);
+                    carry = prev[carry];
+                }
+                if (result.Count == 1)
+                {
+                    Console.WriteLine("You are searching for yourself");
+                }
+                else if (result.Count == 2)
+                {
+                    Console.WriteLine("Direct connection");
+                }
+                else if (result.Count == 3)
+                {
+                    Console.WriteLine("1st-degree connection");
+                }
+                else if (result.Count == 4)
+                {
+                    Console.WriteLine("2nd-degree connection");
+                }
+                else if (result.Count == 5)
+                {
+                    Console.WriteLine("3rd-degree connection");
+                }
+                else
+                {
+                    Console.WriteLine((result.Count - 2) + " th-degree connection");
+                }
+                if (result.Count >= 2)
+                {
+                    while (result.Count > 1)
+                    {
+                        int buang = result.Pop();
+                        temp = ConverterKeChar(buang);
+                        Console.Write(reconverterAsu(temp, basis, panduan2));
+                        Console.Write(" -> ");
+                    }
+                    int buang2 = result.Pop();
+                    temp = ConverterKeChar(buang2);
+                    Console.WriteLine(reconverterAsu(temp, basis, panduan2));
+
+                }
+            }
+            else
+            {
+                Console.WriteLine("Tidak ada jalur koneksi yang tersedia");
+                Console.WriteLine("Anda harus memulai koneksi baru itu sendiri.");
+            }
+
         }
 
         static void Main(string[] args)
         {
             try
             {
-                string filepath = @"C:\Users\alfan\Documents\GitHub\Tubes2Stima\TubesStima2\TubesStima2\Circular.txt"; // nanti kau ubah pathnya
+                string filepath = @"C:\git\Tubes2Stima\TubesStima2\TubesStima2\test.txt"; // nanti kau ubah pathnya
                 List<string> lines = new List<string>();
                 List<string> basis = new List<string>();
 
@@ -589,7 +674,7 @@ namespace TubesStima2
                     }
 
                 }
-                // explore friends
+                // explore friends DFS
                 Console.Write("Explore with : ");
                 string masuk1 = Console.ReadLine();
                 string dummy1 = converterAsu(masuk1, basis, panduan2);
@@ -611,6 +696,19 @@ namespace TubesStima2
                     Console.WriteLine("Tidak ada jalur koneksi yang tersedia");
                     Console.WriteLine("Anda harus memulai koneksi baru itu sendiri.");
                 }
+
+                //explore friend BFS
+                Console.Write("Explore with : ");
+                string masuk3 = Console.ReadLine();
+                string dummy3 = converterAsu(masuk1, basis, panduan2);
+                int awal3 = ConverterKeInt(dummy1);
+
+                Console.Write("Choose account : ");
+                string masuk = Console.ReadLine();
+                string dummy4 = converterAsu(masuk2, basis, panduan2);
+                int akhir4 = ConverterKeInt(dummy2);
+                //static void Soal2BFS(Graph g, int a, int b, int count_graph, List<string> basis, List<string> panduan2)
+                Soal2BFS(g3, awal3, akhir4, count_graph, basis, panduan2);
 
             }
 
