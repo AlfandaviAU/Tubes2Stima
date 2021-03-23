@@ -1,7 +1,7 @@
 {
   "ExpandedNodes": [
     "",
-    "\\TubesStima2",
+    "\\OnlyVANS",
     "\\TubesStima2\\TubesStima2",
     "\\TubesStima2\\TubesStima2\\bin",
     "\\TubesStima2\\TubesStima2\\bin\\Debug",
@@ -12,6 +12,6 @@
     "\\TubesStima2\\TubesStima2\\obj\\Debug",
     "\\TubesStima2\\TubesStima2\\obj\\Debug\\netcoreapp3.1"
   ],
-  "SelectedNode": "\\TubesStima2\\TubesStima2\\TubesStima2.csproj",
+  "SelectedNode": "\\OnlyVANS\\OnlyVANS.sln",
   "PreviewInSolutionExplorer": false
 }

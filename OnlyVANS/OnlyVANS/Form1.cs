@@ -541,6 +541,8 @@ namespace OnlyVANS
 
         private void button2_Click(object sender, EventArgs e)
         {
+            comboBox1.Items.Clear();
+            comboBox2.Items.Clear();
             openFileDialog1.Title = "Open txt file";
             openFileDialog1.ShowDialog();
             filePath = System.IO.Path.GetFullPath(openFileDialog1.FileName);
@@ -569,7 +571,9 @@ namespace OnlyVANS
             basis.Sort();
             foreach (string a in basis)
             {
-                label10.Text += a +  "\n";
+                comboBox1.Items.Add(a);
+                comboBox2.Items.Add(a);
+                //label10.Text += a +  "\n";
             }
             for (int i = 0; i < basis.Count; i++)
             {
@@ -771,48 +775,7 @@ namespace OnlyVANS
             simpul[a].Add(b);
             simpul[a].Sort();
         }
-        public void DFS(int a)
-        {
-            bool[] dikunjungi = new bool[titik];
-            Stack<Int32> stack = new Stack<int>();
-            dikunjungi[a] = true;
-            stack.Push(a);
-
-            while (stack.Count != 0)
-            {
-                a = stack.Pop();
-                Console.Write(a + ",");
-                foreach (int i in simpul[a])
-                {
-                    if (!dikunjungi[i])
-                    {
-                        dikunjungi[i] = true;
-                        stack.Push(i);
-                    }
-                }
-            }
-        }
-        public void BFS(int a)
-        {
-            bool[] dikunjungi = new bool[titik];
-            Queue<Int32> queue = new Queue<int>();
-            dikunjungi[a] = true;
-            queue.Enqueue(a);
-
-            while (queue.Count != 0)
-            {
-                a = queue.Dequeue();
-                Console.Write(a + ",");
-                foreach (int i in simpul[a])
-                {
-                    if (!dikunjungi[i])
-                    {
-                        dikunjungi[i] = true;
-                        queue.Enqueue(i);
-                    }
-                }
-            }
-        }
+      
         public int[] After(int a) // After iki intine sama ae karo bfs tapi sampe tingkat 1 ae
         {
             int[] after = new int[titik];
