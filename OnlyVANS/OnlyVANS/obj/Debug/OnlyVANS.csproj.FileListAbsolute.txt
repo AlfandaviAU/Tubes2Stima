@@ -1,0 +1,10 @@
+C:\git\Tubes2Stima\OnlyVANS\OnlyVANS\bin\Debug\OnlyVANS.exe.config
+C:\git\Tubes2Stima\OnlyVANS\OnlyVANS\bin\Debug\OnlyVANS.exe
+C:\git\Tubes2Stima\OnlyVANS\OnlyVANS\bin\Debug\OnlyVANS.pdb
+C:\git\Tubes2Stima\OnlyVANS\OnlyVANS\obj\Debug\OnlyVANS.csprojAssemblyReference.cache
+C:\git\Tubes2Stima\OnlyVANS\OnlyVANS\obj\Debug\OnlyVANS.onlyvans.resources
+C:\git\Tubes2Stima\OnlyVANS\OnlyVANS\obj\Debug\OnlyVANS.Properties.Resources.resources
+C:\git\Tubes2Stima\OnlyVANS\OnlyVANS\obj\Debug\OnlyVANS.csproj.GenerateResource.cache
+C:\git\Tubes2Stima\OnlyVANS\OnlyVANS\obj\Debug\OnlyVANS.csproj.CoreCompileInputs.cache
+C:\git\Tubes2Stima\OnlyVANS\OnlyVANS\obj\Debug\OnlyVANS.exe
+C:\git\Tubes2Stima\OnlyVANS\OnlyVANS\obj\Debug\OnlyVANS.pdb
