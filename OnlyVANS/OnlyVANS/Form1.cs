@@ -272,7 +272,7 @@ namespace OnlyVANS
             return count;
         }
         // Soal1(g, g2, src, data[i].Item1, count_graph);
-        static int Soal1(Graph a, int src, int dest, int titik)
+        int Soal1(Graph a, int src, int dest, int titik)
         {
             int teman = 0;
             int[] temp1 = new int[titik];
@@ -313,23 +313,27 @@ namespace OnlyVANS
             }
             if (teman == 1)
             {
-                Console.WriteLine("Already friends");
+                //Console.WriteLine("Already friends");
+                label10.Text += "Already friends\n";
                 return 0;
             }
             else if (count > 0)
             {
                 if (count != 1)
                 {
-                    Console.WriteLine(count + " mutual friends : ");
+                    //Console.WriteLine(count + " mutual friends : ");
+                    label10.Text += count + " mutual friends : \n";
                 }
                 else
                 {
-                    Console.WriteLine("1 mutual friend : ");
+                    //Console.WriteLine("1 mutual friend : ");
+                    label10.Text += "1 mutual friend : \n";
                 }
             }
             else
             {
-                Console.WriteLine("No mutual friend");
+                //Console.WriteLine("No mutual friend");
+                label10.Text += "No mutual friend\n";
                 return 0;
             }
 
@@ -339,73 +343,75 @@ namespace OnlyVANS
                 {
                     if (temp1[i] == temp2[j] && (temp1[i] != 0))
                     {
-                        Console.WriteLine(ConverterKeChar(temp1[i]));
+                        //Console.WriteLine(ConverterKeChar(temp1[i]));
+                        label10.Text += ConverterKeChar(temp1[i]) + "\n";
                     }
                 }
             }
             return teman;
         }
 
-        static bool Soal2DFS(Graph g, int awal, int akhir, int[] dikunjungi, int[] result, int tingkat, List<string> basis, List<string> panduan2)
+        bool Soal2DFS(Graph g,int awal,int akhir,int[] dikunjungi,int[] result,int tingkat,List<string> basis,List<string> panduan2) 
         {
             string temp;
             dikunjungi[awal] = 1;
-            if (awal == akhir)
-            {
+            if(awal == akhir) {
                 int x = 0;
                 temp = ConverterKeChar(result[0]);
-                Console.Write(reconverterAsu(temp, basis, panduan2));
-                Console.Write(" dan ");
+                //Console.Write(reconverterAsu(temp,basis,panduan2));
+                label10.Text += reconverterAsu(temp,basis,panduan2);
+                //Console.Write(" dan ");
                 temp = ConverterKeChar(akhir);
-                Console.WriteLine(reconverterAsu(temp, basis, panduan2));
-                if (tingkat == 0)
-                {
-                    Console.WriteLine("You are searchig for yourself");
+                //Console.WriteLine(reconverterAsu(temp,basis,panduan2));
+                label10.Text += reconverterAsu(temp,basis,panduan2) + "\n";
+                if(tingkat == 0) {
+                    //Console.WriteLine("You are searching for yourself");
+                    label10.Text += "You are searching for yourself\n";
                 }
-                else if (tingkat == 1)
-                {
-                    Console.WriteLine("Direct connection");
+                else if(tingkat == 1) {
+                    //Console.WriteLine("Direct connection");
+                    label10.Text += "Direct connection\n";
                 }
-                else if (tingkat == 2)
-                {
-                    Console.WriteLine("1st-degree connection");
+                else if(tingkat == 2) {
+                    //Console.WriteLine("1st-degree connection");
+                    label10.Text += "1st-degree connection\n";
                 }
-                else if (tingkat == 3)
-                {
-                    Console.WriteLine("2nd-degree connection");
+                else if(tingkat == 3) {
+                    //Console.WriteLine("2nd-degree connection");
+                    label10.Text += "2nd-degree connection\n";
                 }
-                else if (tingkat == 4)
-                {
-                    Console.WriteLine("3rd-degree connection");
+                else if(tingkat == 4) {
+                    //Console.WriteLine("3rd-degree connection");
+                    label10.Text += "3rd-degree connection\n";
                 }
-                else
-                {
-                    Console.WriteLine((tingkat - 1) + " th-degree connection");
+                else {
+                    //Console.WriteLine((tingkat - 1) + " th-degree connection");
+                    label10.Text += (tingkat - 1) + " th-degree connection\n";
                 }
                 if (tingkat >= 1)
                 {
                     while (x < tingkat)
                     {
                         temp = ConverterKeChar(result[x]);
-                        Console.Write(reconverterAsu(temp, basis, panduan2));
-                        Console.Write(" -> ");
+                        //Console.Write(reconverterAsu(temp, basis, panduan2));
+                        label10.Text += reconverterAsu(temp, basis, panduan2);
+                        //Console.Write(" -> ");
+                        label10.Text += " -> ";
                         x = x + 1;
                     }
                     temp = ConverterKeChar(result[x]);
-                    Console.WriteLine(reconverterAsu(temp, basis, panduan2));
+                    //Console.WriteLine(reconverterAsu(temp, basis, panduan2));
+                    label10.Text += reconverterAsu(temp, basis, panduan2) + "\n";
                 }
                 return true;
             }
-            else
-            {
+            else {
                 int[] cabang = g.After(awal);
-                foreach (int z in cabang)
-                {
-                    if (dikunjungi[z] == 0)
-                    {
-                        result[tingkat + 1] = z;
-                        bool yesno = Soal2DFS(g, z, akhir, dikunjungi, result, tingkat + 1, basis, panduan2);
-                        if (yesno)
+                foreach(int z in cabang) {
+                    if(dikunjungi[z] == 0) {
+                        result[tingkat+1] = z;
+                        bool yesno = Soal2DFS(g, z, akhir, dikunjungi, result, tingkat + 1,basis,panduan2);
+                        if(yesno)
                         {
                             return true;
                         }
@@ -414,7 +420,7 @@ namespace OnlyVANS
             }
             return false;
         }
-        static void Soal2BFS(Graph g, int a, int b, int count_graph, List<string> basis, List<string> panduan2)
+        void Soal2BFS(Graph g,int a, int b, int count_graph, List<string> basis, List<string> panduan2)
         {
             int x;
             string temp;
@@ -447,10 +453,13 @@ namespace OnlyVANS
                 }
             }
             temp = ConverterKeChar(a);
-            Console.Write(reconverterAsu(temp, basis, panduan2));
-            Console.Write(" dan ");
+            //Console.Write(reconverterAsu(temp, basis, panduan2));
+            label10.Text += reconverterAsu(temp, basis, panduan2);
+            //Console.Write(" dan ");
+            label10.Text += " dan ";
             temp = ConverterKeChar(b);
-            Console.WriteLine(reconverterAsu(temp, basis, panduan2));
+            //Console.WriteLine(reconverterAsu(temp, basis, panduan2));
+            label10.Text += reconverterAsu(temp, basis, panduan2) + "\n";
             if (found)
             {
                 Stack<Int32> result = new Stack<int>();
@@ -462,27 +471,33 @@ namespace OnlyVANS
                 }
                 if (result.Count == 1)
                 {
-                    Console.WriteLine("You are searching for yourself");
+                    //Console.WriteLine("You are searching for yourself");
+                    label10.Text += "You are searching for yourself\n";
                 }
                 else if (result.Count == 2)
                 {
-                    Console.WriteLine("Direct connection");
+                    //Console.WriteLine("Direct connection");
+                    label10.Text += "Direct connection\n";
                 }
                 else if (result.Count == 3)
                 {
-                    Console.WriteLine("1st-degree connection");
+                    //Console.WriteLine("1st-degree connection");
+                    label10.Text += "1st-degree connection\n";
                 }
                 else if (result.Count == 4)
                 {
-                    Console.WriteLine("2nd-degree connection");
+                    //Console.WriteLine("2nd-degree connection");
+                    label10.Text += "2nd-degree connection\n";
                 }
                 else if (result.Count == 5)
                 {
-                    Console.WriteLine("3rd-degree connection");
+                    //Console.WriteLine("3rd-degree connection");
+                    label10.Text += "3rd-degree connection\n";
                 }
                 else
                 {
-                    Console.WriteLine((result.Count - 2) + " th-degree connection");
+                    //Console.WriteLine((result.Count - 2) + " th-degree connection");
+                    label10.Text += (result.Count - 2) + " th-degree connection\n";
                 }
                 if (result.Count >= 2)
                 {
@@ -490,19 +505,24 @@ namespace OnlyVANS
                     {
                         int buang = result.Pop();
                         temp = ConverterKeChar(buang);
-                        Console.Write(reconverterAsu(temp, basis, panduan2));
-                        Console.Write(" -> ");
+                        //Console.Write(reconverterAsu(temp, basis, panduan2));
+                        label10.Text += reconverterAsu(temp, basis, panduan2);
+                        //Console.Write(" -> ");
+                        label10.Text += " -> ";
                     }
                     int buang2 = result.Pop();
                     temp = ConverterKeChar(buang2);
-                    Console.WriteLine(reconverterAsu(temp, basis, panduan2));
+                    //Console.WriteLine(reconverterAsu(temp, basis, panduan2));
+                    label10.Text += reconverterAsu(temp, basis, panduan2) + "\n";
 
                 }
             }
             else
             {
-                Console.WriteLine("Tidak ada jalur koneksi yang tersedia");
-                Console.WriteLine("Anda harus memulai koneksi baru itu sendiri.");
+                //Console.WriteLine("Tidak ada jalur koneksi yang tersedia");
+                label10.Text += "Tidak ada jalur koneksi yang tersedia" + "\n";
+                //Console.WriteLine("Anda harus memulai koneksi baru itu sendiri.");
+                label10.Text += "Anda harus memulai koneksi baru itu sendiri." + "\n";
             }
 
         }
