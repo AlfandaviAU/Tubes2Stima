@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlyVANS", "OnlyVANS\OnlyVANS.csproj", "{011E93EB-B485-4AB3-A8B8-EDFF043E7375}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TubesStima2", "..\TubesStima2\TubesStima2\TubesStima2.csproj", "{CF498982-137A-4DC1-82D2-DC8FB42EAD96}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{011E93EB-B485-4AB3-A8B8-EDFF043E7375}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{011E93EB-B485-4AB3-A8B8-EDFF043E7375}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{011E93EB-B485-4AB3-A8B8-EDFF043E7375}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CF498982-137A-4DC1-82D2-DC8FB42EAD96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CF498982-137A-4DC1-82D2-DC8FB42EAD96}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CF498982-137A-4DC1-82D2-DC8FB42EAD96}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CF498982-137A-4DC1-82D2-DC8FB42EAD96}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

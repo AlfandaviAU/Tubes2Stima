@@ -575,6 +575,7 @@ namespace TubesStima2
                         basis.Add(temp4);
                     }
                 }
+
                 basis.Sort();
                 Console.WriteLine("==========BASIS==========");
                 foreach (string a in basis)
