@@ -23,6 +23,8 @@ namespace OnlyVANS
         List<string> basis = new List<string>();
         List<string> panduan2 = new List<string>();
 
+        int count_graph = 0;
+
         //public static convertGraph(string[] )
         public static string converterAsu(string a, List<string> basis, List<string> panduan2)
         {
@@ -553,6 +555,7 @@ namespace OnlyVANS
             {
                 panduan2.Add(ConverterKeChar(i + 1));
             }
+            
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -580,7 +583,99 @@ namespace OnlyVANS
                 label8.Text = "Friends recommendations for " + chooseAccount + ":";
                 //label9 buat gambar graph
                 //label10 buat nampilkan hasil
+                int count_graph = Int32.Parse(lines[0]);
 
+                Graph g = new Graph(count_graph);
+                Graph g2 = new Graph(count_graph);
+                Graph g3 = new Graph(count_graph + 1);
+
+                for (int z = 1; z <= count_graph; z++)
+                {
+                    char[] c1 = { lines[z][0] };
+                    string s1 = new string(c1);
+                    string ss1 = converterAsu(s1, basis, panduan2);
+                    int temp1 = ConverterKeInt(ss1);
+
+                    char[] c2 = { lines[z][2] };
+                    string s2 = new string(c2);
+                    string ss2 = converterAsu(s2, basis, panduan2);
+                    int temp2 = ConverterKeInt(ss2);
+                    g3.tambahSimpul(temp1,temp2);
+                    g3.tambahSimpul(temp2,temp1);
+
+                }
+                int src = ConverterKeInt(converterAsu(chooseAccount,basis, panduan2));
+                string pelakor1 = converterAsu(exploreWith, basis, panduan2);
+                bool cond = false;
+                for (int i = 0; i < basis.Count; i++)
+                {
+                    if (pelakor1 == panduan2[i])
+                    {
+                        cond = true;
+                    }
+                }
+                int pelakor2 = ConverterKeInt(pelakor1);
+                if (cond == true){
+                    Soal1(g3, src, pelakor2, count_graph);
+                }else{
+                    label10.Text += "Akun tersebut tidak ditemukan\n";
+                }
+                int dest = ConverterKeInt(pelakor1);
+                int temp = ProsesDisek(g3, src, dest, count_graph);
+                var data = new List<Tuple<int, int>>()
+                {
+                    new Tuple<int,int>(1,temp)
+
+                };
+
+                for (int i = 1; i < panduan2.Count(); i++)
+                {
+                    int dest2 = ConverterKeInt(panduan2[i]);
+                    int temp2 = ProsesDisek(g3, src, dest2, count_graph);
+                    data.Add(new Tuple<int, int>(i + 1, temp2));
+                }
+                data = data.OrderByDescending(t => t.Item2).ToList();
+                for (int i = 0; i < data.Count; i++)
+                {
+
+                    if (data[i].Item1 != pelakor2 && data[i].Item1 != src)
+                    {
+                        label10.Text += "Nama akun : ";
+                        string asuu = ConverterKeChar(data[i].Item1);
+                        label10.Text += reconverterAsu(asuu, basis, panduan2);
+                        label10.Text += "\n";
+                        Soal1(g3, src, data[i].Item1, count_graph);
+                        label10.Text += "\n";
+                    }
+
+                }
+                if(algorithm == "DFS"){
+                    string dummy1 = converterAsu(exploreWith, basis, panduan2);
+                    int awal = ConverterKeInt(dummy1);
+
+                    string dummy2 = converterAsu(chooseAccount, basis, panduan2);
+                    int akhir = ConverterKeInt(dummy2);
+
+                    int[] dikunjungi = new int[count_graph + 1];
+                    int[] result = new int[count_graph + 1];
+                    result[0] = awal;
+                    bool hasil = Soal2DFS(g3, awal, akhir, dikunjungi, result, 0, basis, panduan2);
+                    if (hasil == false)
+                    {
+                        label10.Text += (exploreWith + " dan " + chooseAccount + "\n");
+                        label10.Text += ("Tidak ada jalur koneksi yang tersedia\n");
+                        label10.Text += ("Anda harus memulai koneksi baru itu sendiri.\n");
+                    }
+                } else{
+                    string dummy3 = converterAsu(exploreWith, basis, panduan2);
+                    int awal3 = ConverterKeInt(dummy3);
+
+                    string dummy4 = converterAsu(chooseAccount, basis, panduan2);
+                    int akhir4 = ConverterKeInt(dummy4);
+                    //static void Soal2BFS(Graph g, int a, int b, int count_graph, List<string> basis, List<string> panduan2)
+                    Soal2BFS(g3, awal3, akhir4, count_graph, basis, panduan2);
+
+                }
 
                 //MENGGAMBAR GRAPH
                 //create a viewer object 
@@ -605,15 +700,6 @@ namespace OnlyVANS
                 panel2.ResumeLayout();
             }
                
-                if (algorithm == "BFS")
-                {
-                // jika algoritma dipilih BFS
-
-                }
-                else
-                {
-
-                }
 
 
         }
