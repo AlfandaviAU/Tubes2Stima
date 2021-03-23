@@ -32,7 +32,10 @@ namespace OnlyVANS
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.label10 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
@@ -46,8 +49,6 @@ namespace OnlyVANS
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.SuspendLayout();
@@ -98,6 +99,28 @@ namespace OnlyVANS
             this.panel1.Size = new System.Drawing.Size(622, 922);
             this.panel1.TabIndex = 2;
             // 
+            // panel3
+            // 
+            this.panel3.AutoScroll = true;
+            this.panel3.BackColor = System.Drawing.Color.Transparent;
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel3.Controls.Add(this.label10);
+            this.panel3.Controls.Add(this.label8);
+            this.panel3.Location = new System.Drawing.Point(47, 616);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(525, 273);
+            this.panel3.TabIndex = 14;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.BackColor = System.Drawing.Color.Transparent;
+            this.label10.Font = new System.Drawing.Font("Britannic Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(3, 41);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(0, 22);
+            this.label10.TabIndex = 13;
+            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -108,14 +131,24 @@ namespace OnlyVANS
             this.label8.Size = new System.Drawing.Size(0, 22);
             this.label8.TabIndex = 12;
             // 
+            // panel2
+            // 
+            this.panel2.AutoScroll = true;
+            this.panel2.BackColor = System.Drawing.Color.Transparent;
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel2.Location = new System.Drawing.Point(47, 200);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(525, 323);
+            this.panel2.TabIndex = 13;
+            // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.BackColor = System.Drawing.Color.Transparent;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Font = new System.Drawing.Font("Prestige Elite Std", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(386, 117);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(0, 29);
+            this.label7.Size = new System.Drawing.Size(0, 27);
             this.label7.TabIndex = 11;
             // 
             // button3
@@ -136,7 +169,6 @@ namespace OnlyVANS
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(56, 21);
             this.radioButton2.TabIndex = 9;
-            this.radioButton2.TabStop = true;
             this.radioButton2.Text = "DFS";
             this.radioButton2.UseVisualStyleBackColor = false;
             this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
@@ -149,7 +181,6 @@ namespace OnlyVANS
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(55, 21);
             this.radioButton1.TabIndex = 8;
-            this.radioButton1.TabStop = true;
             this.radioButton1.Text = "BFS";
             this.radioButton1.UseVisualStyleBackColor = false;
             this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
@@ -157,6 +188,11 @@ namespace OnlyVANS
             // comboBox2
             // 
             this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "A",
+            "B",
+            "V",
+            "C"});
             this.comboBox2.Location = new System.Drawing.Point(267, 584);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(121, 24);
@@ -167,9 +203,9 @@ namespace OnlyVANS
             // 
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
+            "A",
             "B",
-            "V",
-            "X"});
+            "C"});
             this.comboBox1.Location = new System.Drawing.Point(267, 544);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 24);
@@ -204,9 +240,9 @@ namespace OnlyVANS
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(42, 584);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(188, 29);
+            this.label5.Size = new System.Drawing.Size(145, 29);
             this.label5.TabIndex = 3;
-            this.label5.Text = "Choose Account";
+            this.label5.Text = "Explore with";
             // 
             // label4
             // 
@@ -215,9 +251,9 @@ namespace OnlyVANS
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(42, 544);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(145, 29);
+            this.label4.Size = new System.Drawing.Size(188, 29);
             this.label4.TabIndex = 2;
-            this.label4.Text = "Explore with";
+            this.label4.Text = "Choose Account";
             // 
             // label3
             // 
@@ -244,25 +280,6 @@ namespace OnlyVANS
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.Transparent;
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel2.Location = new System.Drawing.Point(47, 200);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(525, 323);
-            this.panel2.TabIndex = 13;
-            // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.Color.Transparent;
-            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel3.Controls.Add(this.label8);
-            this.panel3.Location = new System.Drawing.Point(47, 616);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(525, 273);
-            this.panel3.TabIndex = 14;
             // 
             // onlyvans
             // 
@@ -304,9 +321,10 @@ namespace OnlyVANS
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label8;
     }
 }
 
