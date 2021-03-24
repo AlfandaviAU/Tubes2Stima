@@ -641,7 +641,11 @@ namespace OnlyVANS
                 }
                 int pelakor2 = ConverterKeInt(pelakor1);
                 if (cond == true){
+
+                    string asuu2 = ConverterKeChar(pelakor2);
+                    label10.Text += "Nama akun : " + reconverterAsu(asuu2, basis, panduan2) + "\n";
                     Soal1(g3, src, pelakor2, count_graph);
+                    label10.Text += "\n";
                 }else{
                     label10.Text += "Akun tersebut tidak ditemukan\n";
                 }
