@@ -19,6 +19,7 @@ namespace OnlyVANS
         string chooseAccount = ""; // var nyimpan pilihan choose account
         string algorithm = ""; // pilihan algoritma
         string filePath = ""; // var buat nyimpan path
+        string fileName; //file name
         List<string> lines = new List<string>();
         List<string> basis = new List<string>();
         List<string> panduan2 = new List<string>();
@@ -547,45 +548,46 @@ namespace OnlyVANS
             openFileDialog1.Title = "Open txt file";
             openFileDialog1.ShowDialog();
             filePath = System.IO.Path.GetFullPath(openFileDialog1.FileName);
-            var fileName = System.IO.Path.GetFileName(openFileDialog1.FileName);
-            label7.Text = fileName;
-
-            lines = File.ReadAllLines(filePath).ToList();
-            for (int i = 1; i < lines.Count(); i++)
+            fileName = System.IO.Path.GetFileName(openFileDialog1.FileName);
+            if (fileName != "open file")
             {
-
-                char[] asu = { lines[i][0] };
-                string temp2 = new string(asu);
-                char[] temp3 = { lines[i][2] };
-                string temp4 = new string(temp3);
-                if (basis.Contains(temp2) == false)
+                label7.Text = fileName;
+                lines = File.ReadAllLines(filePath).ToList();
+                for (int i = 1; i < lines.Count(); i++)
                 {
-                    basis.Add(temp2);
+
+                    char[] asu = { lines[i][0] };
+                    string temp2 = new string(asu);
+                    char[] temp3 = { lines[i][2] };
+                    string temp4 = new string(temp3);
+                    if (basis.Contains(temp2) == false)
+                    {
+                        basis.Add(temp2);
+
+                    }
+                    if (basis.Contains(temp4) == false)
+                    {
+                        basis.Add(temp4);
+                    }
 
                 }
-                if (basis.Contains(temp4) == false)
+                basis.Sort();
+                foreach (string a in basis)
                 {
-                    basis.Add(temp4);
+                    comboBox1.Items.Add(a);
+                    comboBox2.Items.Add(a);
                 }
-
+                for (int i = 0; i < basis.Count; i++)
+                {
+                    panduan2.Add(ConverterKeChar(i + 1));
+                }
             }
-            basis.Sort();
-            foreach (string a in basis)
-            {
-                comboBox1.Items.Add(a);
-                comboBox2.Items.Add(a);
-                //label10.Text += a +  "\n";
-            }
-            for (int i = 0; i < basis.Count; i++)
-            {
-                panduan2.Add(ConverterKeChar(i + 1));
-            }
-            
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            if (filePath == "")
+            label10.Text = "";
+            if ((filePath == "") | (fileName == "open file") )
             {
                 label8.Text = "Message : File belum di input.";
             }
@@ -605,7 +607,7 @@ namespace OnlyVANS
             {
                 //SUBMIT BUTTON
                 //button3
-                label8.Text = "Friends recommendations for " + chooseAccount + ":";
+                label8.Text = "Friends recommendations for " + chooseAccount + ":\n";
                 //label9 buat gambar graph
                 //label10 buat nampilkan hasil
                 int count_graph = Int32.Parse(lines[0]);
@@ -613,6 +615,7 @@ namespace OnlyVANS
                 Graph g = new Graph(count_graph);
                 Graph g2 = new Graph(count_graph);
                 Graph g3 = new Graph(27);
+
 
                 for (int z = 1; z <= count_graph; z++)
                 {
@@ -669,6 +672,7 @@ namespace OnlyVANS
 
                     if (data[i].Item1 != pelakor2 && data[i].Item1 != src)
                     {
+
                         label10.Text += "Nama akun : ";
                         string asuu = ConverterKeChar(data[i].Item1);
                         label10.Text += reconverterAsu(asuu, basis, panduan2);
@@ -760,6 +764,27 @@ namespace OnlyVANS
         private void panel3_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            exploreWith = ""; 
+            chooseAccount = ""; 
+            algorithm = ""; 
+            filePath = "";
+            lines.Clear();
+            basis.Clear();
+            panduan2.Clear();
+            label7.ResetText();
+            panel2.Controls.Clear();
+            label8.ResetText();
+            label10.ResetText();
+            comboBox1.Text = "";
+            comboBox2.Text = "";
+            comboBox1.Items.Clear();
+            comboBox2.Items.Clear();
+            radioButton1.Checked = false;
+            radioButton2.Checked = false;
         }
     }
     class Graph
