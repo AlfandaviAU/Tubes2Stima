@@ -361,6 +361,7 @@ namespace OnlyVANS
                 //Console.Write(reconverterAsu(temp,basis,panduan2));
                 label10.Text += reconverterAsu(temp,basis,panduan2);
                 //Console.Write(" dan ");
+                label10.Text += " dan ";
                 temp = ConverterKeChar(akhir);
                 //Console.WriteLine(reconverterAsu(temp,basis,panduan2));
                 label10.Text += reconverterAsu(temp,basis,panduan2) + "\n";
@@ -611,7 +612,7 @@ namespace OnlyVANS
 
                 Graph g = new Graph(count_graph);
                 Graph g2 = new Graph(count_graph);
-                Graph g3 = new Graph(count_graph + 1);
+                Graph g3 = new Graph(27);
 
                 for (int z = 1; z <= count_graph; z++)
                 {
@@ -674,13 +675,13 @@ namespace OnlyVANS
 
                 }
                 if(algorithm == "DFS"){
-                    string dummy1 = converterAsu(exploreWith, basis, panduan2);
+                    string dummy1 = converterAsu(chooseAccount, basis, panduan2);
                     int awal = ConverterKeInt(dummy1);
 
-                    string dummy2 = converterAsu(chooseAccount, basis, panduan2);
+                    string dummy2 = converterAsu(exploreWith, basis, panduan2);
                     int akhir = ConverterKeInt(dummy2);
 
-                    int[] dikunjungi = new int[count_graph + 1];
+                    int[] dikunjungi = new int[27];
                     int[] result = new int[count_graph + 1];
                     result[0] = awal;
                     bool hasil = Soal2DFS(g3, awal, akhir, dikunjungi, result, 0, basis, panduan2);
@@ -691,13 +692,13 @@ namespace OnlyVANS
                         label10.Text += ("Anda harus memulai koneksi baru itu sendiri.\n");
                     }
                 } else{
-                    string dummy3 = converterAsu(exploreWith, basis, panduan2);
+                    string dummy3 = converterAsu(chooseAccount, basis, panduan2);
                     int awal3 = ConverterKeInt(dummy3);
 
-                    string dummy4 = converterAsu(chooseAccount, basis, panduan2);
+                    string dummy4 = converterAsu(exploreWith, basis, panduan2);
                     int akhir4 = ConverterKeInt(dummy4);
                     //static void Soal2BFS(Graph g, int a, int b, int count_graph, List<string> basis, List<string> panduan2)
-                    Soal2BFS(g3, awal3, akhir4, count_graph, basis, panduan2);
+                    Soal2BFS(g3, awal3, akhir4, 27, basis, panduan2);
 
                 }
 
