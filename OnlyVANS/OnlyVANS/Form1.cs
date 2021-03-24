@@ -586,6 +586,7 @@ namespace OnlyVANS
 
         private void button3_Click(object sender, EventArgs e)
         {
+            label10.Text = "";
             if ((filePath == "") | (fileName == "open file") )
             {
                 label8.Text = "Message : File belum di input.";
@@ -614,6 +615,7 @@ namespace OnlyVANS
                 Graph g = new Graph(count_graph);
                 Graph g2 = new Graph(count_graph);
                 Graph g3 = new Graph(27);
+
 
                 for (int z = 1; z <= count_graph; z++)
                 {
