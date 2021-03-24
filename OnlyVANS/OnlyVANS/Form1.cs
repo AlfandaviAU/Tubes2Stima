@@ -541,8 +541,29 @@ namespace OnlyVANS
             panel1.Show();
         }
 
+        public void reset()
+        {
+            exploreWith = "";
+            chooseAccount = "";
+            algorithm = "";
+            filePath = "";
+            lines.Clear();
+            basis.Clear();
+            panduan2.Clear();
+            label7.ResetText();
+            panel2.Controls.Clear();
+            label8.ResetText();
+            label10.ResetText();
+            comboBox1.Text = "";
+            comboBox2.Text = "";
+            comboBox1.Items.Clear();
+            comboBox2.Items.Clear();
+            radioButton1.Checked = false;
+            radioButton2.Checked = false;
+        }
         private void button2_Click(object sender, EventArgs e)
         {
+            reset();
             comboBox1.Items.Clear();
             comboBox2.Items.Clear();
             openFileDialog1.Title = "Open txt file";
@@ -616,7 +637,6 @@ namespace OnlyVANS
                 Graph g2 = new Graph(count_graph);
                 Graph g3 = new Graph(27);
 
-
                 for (int z = 1; z <= count_graph; z++)
                 {
                     char[] c1 = { lines[z][0] };
@@ -644,7 +664,6 @@ namespace OnlyVANS
                 }
                 int pelakor2 = ConverterKeInt(pelakor1);
                 if (cond == true){
-
                     string asuu2 = ConverterKeChar(pelakor2);
                     label10.Text += "Nama akun : " + reconverterAsu(asuu2, basis, panduan2) + "\n";
                     Soal1(g3, src, pelakor2, count_graph);
@@ -768,23 +787,7 @@ namespace OnlyVANS
 
         private void button4_Click(object sender, EventArgs e)
         {
-            exploreWith = ""; 
-            chooseAccount = ""; 
-            algorithm = ""; 
-            filePath = "";
-            lines.Clear();
-            basis.Clear();
-            panduan2.Clear();
-            label7.ResetText();
-            panel2.Controls.Clear();
-            label8.ResetText();
-            label10.ResetText();
-            comboBox1.Text = "";
-            comboBox2.Text = "";
-            comboBox1.Items.Clear();
-            comboBox2.Items.Clear();
-            radioButton1.Checked = false;
-            radioButton2.Checked = false;
+            reset();
         }
     }
     class Graph
