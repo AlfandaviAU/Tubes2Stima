@@ -615,7 +615,7 @@ namespace OnlyVANS
                 Graph g = new Graph(count_graph);
                 Graph g2 = new Graph(count_graph);
                 Graph g3 = new Graph(27);
-              
+
 
                 for (int z = 1; z <= count_graph; z++)
                 {
@@ -644,12 +644,12 @@ namespace OnlyVANS
                 }
                 int pelakor2 = ConverterKeInt(pelakor1);
                 if (cond == true){
+
                     string asuu2 = ConverterKeChar(pelakor2);
                     label10.Text += "Nama akun : " + reconverterAsu(asuu2, basis, panduan2) + "\n";
                     Soal1(g3, src, pelakor2, count_graph);
                     label10.Text += "\n";
-                }
-                else{
+                }else{
                     label10.Text += "Akun tersebut tidak ditemukan\n";
                 }
                 int dest = ConverterKeInt(pelakor1);
