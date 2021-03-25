@@ -23,6 +23,12 @@ namespace OnlyVANS
         List<string> lines = new List<string>();
         List<string> basis = new List<string>();
         List<string> panduan2 = new List<string>();
+        List<string> res = new List<string>();
+        
+        Microsoft.Msagl.GraphViewerGdi.GViewer viewer = new Microsoft.Msagl.GraphViewerGdi.GViewer();
+        //create a graph object 
+        Microsoft.Msagl.Drawing.Graph graph = new Microsoft.Msagl.Drawing.Graph("graph");
+        //asumsi input 
 
         int count_graph = 0;
 
@@ -397,11 +403,13 @@ namespace OnlyVANS
                         temp = ConverterKeChar(result[x]);
                         //Console.Write(reconverterAsu(temp, basis, panduan2));
                         label10.Text += reconverterAsu(temp, basis, panduan2);
+                        res.Add(reconverterAsu(temp, basis, panduan2));
                         //Console.Write(" -> ");
                         label10.Text += " -> ";
                         x = x + 1;
                     }
                     temp = ConverterKeChar(result[x]);
+                    res.Add(reconverterAsu(temp, basis, panduan2));
                     //Console.WriteLine(reconverterAsu(temp, basis, panduan2));
                     label10.Text += reconverterAsu(temp, basis, panduan2) + "\n";
                 }
@@ -509,11 +517,13 @@ namespace OnlyVANS
                         temp = ConverterKeChar(buang);
                         //Console.Write(reconverterAsu(temp, basis, panduan2));
                         label10.Text += reconverterAsu(temp, basis, panduan2);
+                        res.Add(reconverterAsu(temp, basis, panduan2));
                         //Console.Write(" -> ");
                         label10.Text += " -> ";
                     }
                     int buang2 = result.Pop();
                     temp = ConverterKeChar(buang2);
+                    res.Add(reconverterAsu(temp, basis, panduan2));
                     //Console.WriteLine(reconverterAsu(temp, basis, panduan2));
                     label10.Text += reconverterAsu(temp, basis, panduan2) + "\n";
 
@@ -636,7 +646,6 @@ namespace OnlyVANS
                 Graph g = new Graph(count_graph);
                 Graph g2 = new Graph(count_graph);
                 Graph g3 = new Graph(27);
-
                 for (int z = 1; z <= count_graph; z++)
                 {
                     char[] c1 = { lines[z][0] };
@@ -650,8 +659,10 @@ namespace OnlyVANS
                     int temp2 = ConverterKeInt(ss2);
                     g3.tambahSimpul(temp1,temp2);
                     g3.tambahSimpul(temp2,temp1);
-
+                    //graph.AddEdge(s1, s2);
                 }
+
+
                 int src = ConverterKeInt(converterAsu(chooseAccount,basis, panduan2));
                 string pelakor1 = converterAsu(exploreWith, basis, panduan2);
                 bool cond = false;
@@ -728,19 +739,46 @@ namespace OnlyVANS
                     Soal2BFS(g3, awal3, akhir4, 27, basis, panduan2);
 
                 }
+                var hashSet = new HashSet<string>(res);
+                foreach (string i in hashSet)
+                    {
+                        label10.Text += i;
+                    }
 
-                //MENGGAMBAR GRAPH
-                //create a viewer object 
-                Microsoft.Msagl.GraphViewerGdi.GViewer viewer = new Microsoft.Msagl.GraphViewerGdi.GViewer();
-                //create a graph object 
-                Microsoft.Msagl.Drawing.Graph graph = new Microsoft.Msagl.Drawing.Graph("graph");
-                //asumsi input 
-                graph.AddEdge("A", "B"); 
-                graph.AddEdge("B", "C");
-                graph.AddEdge("A", "C").Attr.Color = Microsoft.Msagl.Drawing.Color.Green;
-                graph.FindNode("A").Attr.FillColor = Microsoft.Msagl.Drawing.Color.Magenta;
-                graph.FindNode("B").Attr.FillColor = Microsoft.Msagl.Drawing.Color.MistyRose;
-                Microsoft.Msagl.Drawing.Node c = graph.FindNode("C");
+                for (int z = 1 ; z <= count_graph; z++)
+                {
+                    char[] c1 = { lines[z][0] };
+                    string s1 = new string(c1);
+                    string ss1 = reconverterAsu(s1, basis, panduan2);
+                    int temp1 = ConverterKeInt(ss1);
+
+                    char[] c2 = { lines[z][2] };
+                    string s2 = new string(c2);
+                    string ss2 = reconverterAsu(s2, basis, panduan2);
+                    int temp2 = ConverterKeInt(ss2);
+                    graph.AddEdge(ss1,ss2);
+                }
+                for (int z = 1 ; z <= count_graph; z++)
+                {
+                    char[] c1 = { lines[z][0] };
+                    string s1 = new string(c1);
+                    string ss1 = reconverterAsu(s1, basis, panduan2);
+                    int temp1 = ConverterKeInt(ss1);
+
+                    char[] c2 = { lines[z][2] };
+                    string s2 = new string(c2);
+                    string ss2 = reconverterAsu(s2, basis, panduan2);
+                    int temp2 = ConverterKeInt(ss2);
+                    if (hashSet.Contains(ss1) == true)
+                    {    
+                        if (  hashSet.Contains(ss2) == true){
+                            graph.AddEdge(ss1, ss2).Attr.Color = Microsoft.Msagl.Drawing.Color.Green;
+                        }
+                    }
+                }
+                //graph.AddEdge("A", "C").Attr.Color = Microsoft.Msagl.Drawing.Color.Green;
+                graph.FindNode(chooseAccount).Attr.FillColor = Microsoft.Msagl.Drawing.Color.Magenta;
+                Microsoft.Msagl.Drawing.Node c = graph.FindNode(exploreWith);
                 c.Attr.FillColor = Microsoft.Msagl.Drawing.Color.PaleGreen;
                 c.Attr.Shape = Microsoft.Msagl.Drawing.Shape.Diamond;
                 //bind the graph to the viewer 
