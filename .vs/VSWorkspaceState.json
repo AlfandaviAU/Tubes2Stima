@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\OnlyVANS"
+    "\\src",
+    "\\src\\Solution"
   ],
-  "SelectedNode": "\\OnlyVANS\\OnlyVANS.sln",
+  "SelectedNode": "\\src\\Solution\\OnlyVANS.sln",
   "PreviewInSolutionExplorer": false
 }
