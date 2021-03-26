@@ -1,0 +1,15 @@
+C:\Users\alfan\Documents\GitHub\tubesstima2\Tubes2Stima\src\Solution\OnlyVANS\bin\Debug\OnlyVANS.exe.config
+C:\Users\alfan\Documents\GitHub\tubesstima2\Tubes2Stima\src\Solution\OnlyVANS\bin\Debug\OnlyVANS.exe
+C:\Users\alfan\Documents\GitHub\tubesstima2\Tubes2Stima\src\Solution\OnlyVANS\bin\Debug\OnlyVANS.pdb
+C:\Users\alfan\Documents\GitHub\tubesstima2\Tubes2Stima\src\Solution\OnlyVANS\bin\Debug\AutomaticGraphLayout.dll
+C:\Users\alfan\Documents\GitHub\tubesstima2\Tubes2Stima\src\Solution\OnlyVANS\bin\Debug\AutomaticGraphLayout.Drawing.dll
+C:\Users\alfan\Documents\GitHub\tubesstima2\Tubes2Stima\src\Solution\OnlyVANS\bin\Debug\Microsoft.Msagl.GraphViewerGdi.dll
+C:\Users\alfan\Documents\GitHub\tubesstima2\Tubes2Stima\src\Solution\OnlyVANS\bin\Debug\Microsoft.Msagl.WpfGraphControl.dll
+C:\Users\alfan\Documents\GitHub\tubesstima2\Tubes2Stima\src\Solution\OnlyVANS\obj\Debug\OnlyVANS.csprojAssemblyReference.cache
+C:\Users\alfan\Documents\GitHub\tubesstima2\Tubes2Stima\src\Solution\OnlyVANS\obj\Debug\OnlyVANS.onlyvansform.resources
+C:\Users\alfan\Documents\GitHub\tubesstima2\Tubes2Stima\src\Solution\OnlyVANS\obj\Debug\OnlyVANS.Properties.Resources.resources
+C:\Users\alfan\Documents\GitHub\tubesstima2\Tubes2Stima\src\Solution\OnlyVANS\obj\Debug\OnlyVANS.csproj.GenerateResource.cache
+C:\Users\alfan\Documents\GitHub\tubesstima2\Tubes2Stima\src\Solution\OnlyVANS\obj\Debug\OnlyVANS.csproj.CoreCompileInputs.cache
+C:\Users\alfan\Documents\GitHub\tubesstima2\Tubes2Stima\src\Solution\OnlyVANS\obj\Debug\OnlyVANS.csproj.CopyComplete
+C:\Users\alfan\Documents\GitHub\tubesstima2\Tubes2Stima\src\Solution\OnlyVANS\obj\Debug\OnlyVANS.exe
+C:\Users\alfan\Documents\GitHub\tubesstima2\Tubes2Stima\src\Solution\OnlyVANS\obj\Debug\OnlyVANS.pdb
